@@ -1,1 +1,1 @@
-# WandUI
+Wand UI - Redz UI
