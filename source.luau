@@ -3914,7 +3914,7 @@ end
 function ag:Dialog(av)
 if ab:FindFirstChild("Dialog")then return end
 if self.Minimized then
-while not self:MinimizeButton()do task.wait()end
+self:MinimizeButton()
 end
 
 local aw=av.Title or av.Name or "Dialog"
@@ -3928,6 +3928,7 @@ Size=UDim2.fromOffset(250*1.08,150*1.08),
 Position=UDim2.fromScale(0.5,0.5),
 AnchorPoint=Vector2.new(0.5,0.5),
 Active=true,
+BackgroundTransparency=1,
 Elements={
 Corner=UDim.new(0,7),
 Gradient={
@@ -3953,7 +3954,7 @@ TextColor3="Colors.Text.Default"
 }),
 E("TextLabel",{
 Font=Enum.Font.GothamMedium,
-Size=UDim2.new(1,-25,0,0),
+Size=UDim2.new(1,-25),
 AutomaticSize=Enum.AutomaticSize.Y,
 Text=ax,
 TextXAlignment=Enum.TextXAlignment.Left,
@@ -3999,8 +4000,12 @@ if aH then aH:Clone().Parent=aG end
 
 aE.Parent=aG
 
-J(aE,"Size",UDim2.fromOffset(250,150),0.2):Play()
-J(aG,"BackgroundTransparency",0.3,0.15):Play()
+local aSizeTween=J(aE,"Size",UDim2.fromOffset(250,150),0.2)
+aSizeTween:Play()
+local aFadeTween=J(aE,"BackgroundTransparency",0,0.15)
+aFadeTween:Play()
+local aScreenTween=J(aG,"BackgroundTransparency",0.3,0.15)
+aScreenTween:Play()
 
 local aI=1
 local aJ={}
@@ -4033,7 +4038,7 @@ local aP=J(aN,"BackgroundTransparency",1,0.3)
 u(aN.MouseLeave,function()aP:Play()end)
 u(aN.MouseEnter,function()aO:Play()end)
 u(aN.Activated,function()
-aJ:Close()
+aJ.Close(aJ)
 aM()
 end)
 
@@ -4047,10 +4052,13 @@ aN.Parent=aF
 end
 
 function aJ:Close()
-J(aE,"Size",UDim2.fromOffset(250*1.08,150*1.08),0.2):Play()
-J(aG,"BackgroundTransparency",1,0.15):Play()
-local aK=J(aG,"BackgroundTransparency",1,0.15)
-aK.Completed:Connect(function()
+local aCloseSize=J(aE,"Size",UDim2.fromOffset(250*1.08,150*1.08),0.2)
+aCloseSize:Play()
+local aCloseScreen=J(aG,"BackgroundTransparency",1,0.15)
+aCloseScreen:Play()
+local aCloseFade=J(aE,"BackgroundTransparency",1,0.15)
+aCloseFade:Play()
+aCloseFade.Completed:Connect(function()
 aG:Destroy()
 end)
 end
