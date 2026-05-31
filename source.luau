@@ -4845,8 +4845,8 @@ return UDim2.new(0,math.clamp(aB,135,210),0.5,15)
 end)
 
 local aA={
-Title="Close Window?",
-Content="You Want Close UI?",
+Title="Hacker Hub",
+Content="Do You Want Close This UI?",
 Options={
 {
 Title="Yes",
