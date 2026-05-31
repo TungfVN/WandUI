@@ -1,28 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local a=cloneref or(function(...)return...end)
 
 local b=delfolder or deletefolder
@@ -1522,8 +1497,30 @@ end
 
 self.Closing=true
 
-local av=J(self.TEMPLATE,"Size",self.NEW_SIZE,0.1)
+local av=J(self.TEMPLATE,"Size",self.NEW_SIZE,0.2)
 av:Play()
+
+local aTitleLabel=self.TEMPLATE:FindFirstChild("Title")
+local aDescLabel=self.TEMPLATE:FindFirstChild("Description")
+if aTitleLabel then
+J(aTitleLabel,"TextTransparency",1,0.15):Play()
+end
+if aDescLabel then
+J(aDescLabel,"TextTransparency",1,0.15):Play()
+end
+
+local aOptionsFrame=self.TEMPLATE:FindFirstChild("Options")
+if aOptionsFrame then
+for _,aBtn in aOptionsFrame:GetChildren()do
+if aBtn:IsA"TextButton"then
+J(aBtn,"TextTransparency",1,0.15):Play()
+J(aBtn,"BackgroundTransparency",1,0.15):Play()
+end
+end
+end
+
+J(aa,"BackgroundTransparency",1,0.2):Play()
+J(self.TEMPLATE,"BackgroundTransparency",1,0.2):Play()
 
 if au then
 av.Completed:Wait()
@@ -3801,10 +3798,10 @@ Color="Colors.Background"
 },
 Childs={
 E("TextLabel","Title",{
-Size=UDim2.new(1,-20,0,20),
+Size=UDim2.new(1,-20,0,25),
 TextTruncate=Enum.TextTruncate.AtEnd,
-TextSize=15,
-Position=UDim2.new(0.5,0,0,28),
+TextSize=18,
+Position=UDim2.new(0.5,0,0,10),
 AnchorPoint=Vector2.new(0.5,0),
 BackgroundTransparency=1,
 ThemeTag={
@@ -3813,11 +3810,11 @@ TextColor3="Colors.Text.Default"
 }
 }),
 E("TextLabel","Description",{
-Position=UDim2.new(0.5,0,0,46),
-Size=UDim2.new(1,-20,0,0),
+Position=UDim2.new(0.5,0,0,38),
+Size=UDim2.new(1,-30,0,0),
 AnchorPoint=Vector2.new(0.5,0),
 TextWrapped=true,
-TextSize=11,
+TextSize=14,
 AutomaticSize=Enum.AutomaticSize.Y,
 BackgroundTransparency=1,
 ThemeTag={
@@ -3838,7 +3835,7 @@ PaddingBottom=UDim.new(0,30),
 PaddingTop=UDim.new(0,30)
 },
 ListLayout={
-HorizontalAlignment=Enum.HorizontalAlignment.Right,
+HorizontalAlignment=Enum.HorizontalAlignment.Center,
 VerticalAlignment=Enum.VerticalAlignment.Center,
 FillDirection=Enum.FillDirection.Horizontal
 }
@@ -3964,27 +3961,29 @@ Color="Colors.Background"
 }
 },
 Childs={
-E("TextLabel",{
+E("TextLabel","DialogTitle",{
 Font=Enum.Font.GothamBold,
-Size=UDim2.new(1,0,0,20),
+Size=UDim2.new(1,-20,0,25),
 Text=aw,
-TextXAlignment=Enum.TextXAlignment.Left,
-TextSize=15,
-Position=UDim2.fromOffset(15,5),
+TextXAlignment=Enum.TextXAlignment.Center,
+TextSize=18,
+Position=UDim2.new(0.5,0,0,10),
+AnchorPoint=Vector2.new(0.5,0),
 BackgroundTransparency=1,
 ThemeTag={
 OBJECTS=aD,
 TextColor3="Colors.Text.Default"
 }
 }),
-E("TextLabel",{
+E("TextLabel","DialogDesc",{
 Font=Enum.Font.GothamMedium,
-Size=UDim2.new(1,-25),
+Size=UDim2.new(1,-30,0,0),
 AutomaticSize=Enum.AutomaticSize.Y,
 Text=ax,
-TextXAlignment=Enum.TextXAlignment.Left,
-TextSize=12,
-Position=UDim2.fromOffset(15,25),
+TextXAlignment=Enum.TextXAlignment.Center,
+TextSize=14,
+Position=UDim2.new(0.5,0,0,38),
+AnchorPoint=Vector2.new(0.5,0),
 BackgroundTransparency=1,
 TextWrapped=true,
 ThemeTag={
@@ -4077,12 +4076,30 @@ aN.Parent=aF
 end
 
 function aJ:Close()
+local aTitleLabel=aE:FindFirstChild("DialogTitle")
+local aDescLabel=aE:FindFirstChild("DialogDesc")
 local aCloseSize=J(aE,"Size",UDim2.fromOffset(250*1.08,150*1.08),0.2)
 aCloseSize:Play()
-local aCloseScreen=J(aG,"BackgroundTransparency",1,0.15)
+local aCloseScreen=J(aG,"BackgroundTransparency",1,0.2)
 aCloseScreen:Play()
-local aCloseFade=J(aE,"BackgroundTransparency",1,0.15)
+local aCloseFade=J(aE,"BackgroundTransparency",1,0.2)
 aCloseFade:Play()
+if aTitleLabel then
+local aCloseTitle=J(aTitleLabel,"TextTransparency",1,0.2)
+aCloseTitle:Play()
+end
+if aDescLabel then
+local aCloseDesc=J(aDescLabel,"TextTransparency",1,0.2)
+aCloseDesc:Play()
+end
+for _,aBtn in aF:GetChildren()do
+if aBtn:IsA"TextButton"then
+local aCloseBtn=J(aBtn,"TextTransparency",1,0.15)
+aCloseBtn:Play()
+local aCloseBtnBg=J(aBtn,"BackgroundTransparency",1,0.15)
+aCloseBtnBg:Play()
+end
+end
 aCloseFade.Completed:Connect(function()
 aG:Destroy()
 end)
