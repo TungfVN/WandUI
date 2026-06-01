@@ -1808,7 +1808,7 @@ Size=UDim2.new(1,-20),
 Position=UDim2.fromScale(0,0.5),
 AnchorPoint=Vector2.new(0,0.5),
 BackgroundTransparency=1,
-TextSize=11,
+TextSize=10,
 ThemeTag={
 OBJECTS=C,
 TextColor3="Colors.Text.Default",
@@ -2457,7 +2457,7 @@ TextTruncate=Enum.TextTruncate.AtEnd,
 Size=UDim2.new(1,-25,1,0),
 Position=UDim2.new(0,5),
 BackgroundTransparency=1,
-TextSize=17,
+TextSize=14,
 Text=av,
 ThemeTag={
 OBJECTS=aw,
@@ -4077,32 +4077,31 @@ aN.Parent=aF
 end
 
 function aJ:Close()
--- Fade out text simultaneously with dialog for smooth close
+local aCloseDur=0.2
 for aK,aL in aE:GetChildren()do
 if aL:IsA("TextLabel")then
-J(aL,"TextTransparency",1,0.15):Play()
+J(aL,"TextTransparency",1,aCloseDur):Play()
 end
 end
 for aK,aL in aF:GetChildren()do
 if aL:IsA("TextButton")then
-J(aL,"TextTransparency",1,0.15):Play()
-J(aL,"BackgroundTransparency",1,0.15):Play()
+J(aL,"TextTransparency",1,aCloseDur):Play()
+J(aL,"BackgroundTransparency",1,aCloseDur):Play()
 local aM=aL:FindFirstChildWhichIsA"UIStroke"
 if aM then
-J(aM,"Transparency",1,0.15):Play()
+J(aM,"Transparency",1,aCloseDur):Play()
 end
 end
 end
 local aN=aE:FindFirstChildWhichIsA"UIStroke"
 if aN then
-J(aN,"Transparency",1,0.15):Play()
+J(aN,"Transparency",1,aCloseDur):Play()
 end
--- Shrink + fade everything simultaneously
-local aCloseSize=J(aE,"Size",UDim2.fromOffset(250*1.08,150*1.08),0.2)
+local aCloseSize=J(aE,"Size",UDim2.fromOffset(250*1.08,150*1.08),aCloseDur)
 aCloseSize:Play()
-local aCloseScreen=J(aG,"BackgroundTransparency",1,0.2)
+local aCloseScreen=J(aG,"BackgroundTransparency",1,aCloseDur)
 aCloseScreen:Play()
-local aCloseFade=J(aE,"BackgroundTransparency",1,0.2)
+local aCloseFade=J(aE,"BackgroundTransparency",1,aCloseDur)
 aCloseFade:Play()
 aCloseFade.Completed:Connect(function()
 aG:Destroy()
@@ -4667,6 +4666,7 @@ Position=UDim2.new(0.5,-ah.X.Offset/2,0.5,-ah.Y.Offset/2),
 Active=true,
 Size=ah,
 ClipsDescendants=true,
+BackgroundColor3=Color3.fromRGB(25,25,25),
 ThemeTag={
 BackgroundTransparency="BackgroundTransparency"
 },
