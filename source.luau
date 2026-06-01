@@ -35,8 +35,8 @@ ColorSequenceKeypoint.new(0.00,Color3.fromRGB(25,25,25)),
 ColorSequenceKeypoint.new(0.50,Color3.fromRGB(32.5,32.5,32.5)),
 ColorSequenceKeypoint.new(1.00,Color3.fromRGB(25,25,25))
 },
-Primary=Color3.fromRGB(88,101,242),
-OnPrimary=Color3.fromRGB(61,67,135),
+Primary=Color3.fromRGB(220,220,220),
+OnPrimary=Color3.fromRGB(180,180,180),
 ScrollBar=Color3.fromRGB(1,76,105),
 Stroke=Color3.fromRGB(45,45,45),
 
@@ -1497,30 +1497,8 @@ end
 
 self.Closing=true
 
-local av=J(self.TEMPLATE,"Size",self.NEW_SIZE,0.2)
+local av=J(self.TEMPLATE,"Size",self.NEW_SIZE,0.1)
 av:Play()
-
-local aTitleLabel=self.TEMPLATE:FindFirstChild("Title")
-local aDescLabel=self.TEMPLATE:FindFirstChild("Description")
-if aTitleLabel then
-J(aTitleLabel,"TextTransparency",1,0.15):Play()
-end
-if aDescLabel then
-J(aDescLabel,"TextTransparency",1,0.15):Play()
-end
-
-local aOptionsFrame=self.TEMPLATE:FindFirstChild("Options")
-if aOptionsFrame then
-for _,aBtn in aOptionsFrame:GetChildren()do
-if aBtn:IsA"TextButton"then
-J(aBtn,"TextTransparency",1,0.15):Play()
-J(aBtn,"BackgroundTransparency",1,0.15):Play()
-end
-end
-end
-
-J(aa,"BackgroundTransparency",1,0.2):Play()
-J(self.TEMPLATE,"BackgroundTransparency",1,0.2):Play()
 
 if au then
 av.Completed:Wait()
@@ -3798,10 +3776,10 @@ Color="Colors.Background"
 },
 Childs={
 E("TextLabel","Title",{
-Size=UDim2.new(1,-20,0,25),
+Size=UDim2.new(1,-20,0,20),
 TextTruncate=Enum.TextTruncate.AtEnd,
-TextSize=18,
-Position=UDim2.new(0.5,0,0,10),
+TextSize=15,
+Position=UDim2.new(0.5,0,0,28),
 AnchorPoint=Vector2.new(0.5,0),
 BackgroundTransparency=1,
 ThemeTag={
@@ -3810,11 +3788,11 @@ TextColor3="Colors.Text.Default"
 }
 }),
 E("TextLabel","Description",{
-Position=UDim2.new(0.5,0,0,38),
-Size=UDim2.new(1,-30,0,0),
+Position=UDim2.new(0.5,0,0,46),
+Size=UDim2.new(1,-20,0,0),
 AnchorPoint=Vector2.new(0.5,0),
 TextWrapped=true,
-TextSize=14,
+TextSize=11,
 AutomaticSize=Enum.AutomaticSize.Y,
 BackgroundTransparency=1,
 ThemeTag={
@@ -3835,7 +3813,7 @@ PaddingBottom=UDim.new(0,30),
 PaddingTop=UDim.new(0,30)
 },
 ListLayout={
-HorizontalAlignment=Enum.HorizontalAlignment.Center,
+HorizontalAlignment=Enum.HorizontalAlignment.Right,
 VerticalAlignment=Enum.VerticalAlignment.Center,
 FillDirection=Enum.FillDirection.Horizontal
 }
@@ -3946,13 +3924,13 @@ local ay=av.Options or {}
 local aD=V[self]
 
 local aE=E("Frame","DialogFrame",{
-Size=UDim2.fromOffset(280,160),
+Size=UDim2.fromOffset(250*1.08,150*1.08),
 Position=UDim2.fromScale(0.5,0.5),
 AnchorPoint=Vector2.new(0.5,0.5),
 Active=true,
 BackgroundTransparency=1,
 Elements={
-Corner=UDim.new(0,10),
+Corner=UDim.new(0,7),
 Gradient={
 Rotation=270,
 ThemeTag={
@@ -3961,29 +3939,27 @@ Color="Colors.Background"
 }
 },
 Childs={
-E("TextLabel","DialogTitle",{
+E("TextLabel",{
 Font=Enum.Font.GothamBold,
-Size=UDim2.new(1,-20,0,25),
+Size=UDim2.new(1,0,0,20),
 Text=aw,
-TextXAlignment=Enum.TextXAlignment.Center,
+TextXAlignment=Enum.TextXAlignment.Left,
 TextSize=15,
-Position=UDim2.new(0.5,0,0,10),
-AnchorPoint=Vector2.new(0.5,0),
+Position=UDim2.fromOffset(15,5),
 BackgroundTransparency=1,
 ThemeTag={
 OBJECTS=aD,
 TextColor3="Colors.Text.Default"
 }
 }),
-E("TextLabel","DialogDesc",{
+E("TextLabel",{
 Font=Enum.Font.GothamMedium,
-Size=UDim2.new(1,-30,0,0),
+Size=UDim2.new(1,-25),
 AutomaticSize=Enum.AutomaticSize.Y,
 Text=ax,
-TextXAlignment=Enum.TextXAlignment.Center,
+TextXAlignment=Enum.TextXAlignment.Left,
 TextSize=12,
-Position=UDim2.new(0.5,0,0,38),
-AnchorPoint=Vector2.new(0.5,0),
+Position=UDim2.fromOffset(15,25),
 BackgroundTransparency=1,
 TextWrapped=true,
 ThemeTag={
@@ -4009,7 +3985,7 @@ HorizontalAlignment=Enum.HorizontalAlignment.Center
 }
 })
 
-local aG=E("Frame","Dialog",ab,{
+local aG=E("Frame","Dialog",I,{
 BackgroundTransparency=0.6,
 Active=true,
 Size=UDim2.new(1,0,1,0),
@@ -4024,35 +4000,12 @@ if aH then aH:Clone().Parent=aG end
 
 aE.Parent=aG
 
--- Decorative: Add UIScale for bounce animation
-local aUIScale=E("UIScale",{Scale=0.3})
-aUIScale.Parent=aE
-
--- Decorative: Add glow stroke to dialog frame
-local aGlowStroke=E("UIStroke",{Color=Color3.fromRGB(200,200,200),Thickness=1.5,Transparency=1})
-aGlowStroke.Parent=aE
-
--- Decorative: Add shadow behind dialog
-local aShadow=E("Frame",aG,{
-Size=UDim2.new(1,20,1,20),
-Position=UDim2.fromScale(0.5,0.5),
-AnchorPoint=Vector2.new(0.5,0.5),
-BackgroundTransparency=1,
-Elements={Corner=UDim.new(0,14)},
-ThemeTag={OBJECTS=aD,BackgroundColor3="Colors.Primary"}
-})
-
--- Open animation: bounce in with glow
-local aScaleTween=J(aUIScale,"Scale",1,0.4,Enum.EasingStyle.Back,Enum.EasingDirection.Out)
-aScaleTween:Play()
-local aFadeTween=J(aE,"BackgroundTransparency",0,0.2)
+local aSizeTween=J(aE,"Size",UDim2.fromOffset(250,150),0.2)
+aSizeTween:Play()
+local aFadeTween=J(aE,"BackgroundTransparency",0,0.15)
 aFadeTween:Play()
 local aScreenTween=J(aG,"BackgroundTransparency",0.3,0.15)
 aScreenTween:Play()
-local aGlowTween=J(aGlowStroke,"Transparency",0.3,0.25)
-aGlowTween:Play()
-local aShadowTween=J(aShadow,"BackgroundTransparency",0.7,0.3)
-aShadowTween:Play()
 
 local aI=1
 local aJ={}
@@ -4070,8 +4023,7 @@ Font=Enum.Font.GothamBold,
 TextSize=12,
 BackgroundTransparency=1,
 Elements={
-Corner=UDim.new(0,8),
-Stroke=Color3.fromRGB(180,180,180)
+Corner=UDim.new(0,5)
 },
 ThemeTag={
 OBJECTS=aD,
@@ -4100,36 +4052,13 @@ aN.Parent=aF
 end
 
 function aJ:Close()
-local aTitleLabel=aE:FindFirstChild("DialogTitle")
-local aDescLabel=aE:FindFirstChild("DialogDesc")
-
--- Close animation: flash glow then shrink
-local aFlashTween=J(aGlowStroke,"Transparency",0,0.08)
-aFlashTween:Play()
-
-task.delay(0.1,function()
--- Shrink with Back easing
-J(aUIScale,"Scale",0,0.3,Enum.EasingStyle.Back,Enum.EasingDirection.In):Play()
-J(aE,"BackgroundTransparency",1,0.25):Play()
-J(aG,"BackgroundTransparency",1,0.2):Play()
-J(aGlowStroke,"Transparency",1,0.15):Play()
-J(aShadow,"BackgroundTransparency",1,0.15):Play()
-
-if aTitleLabel then
-J(aTitleLabel,"TextTransparency",1,0.2):Play()
-end
-if aDescLabel then
-J(aDescLabel,"TextTransparency",1,0.2):Play()
-end
-for _,aBtn in aF:GetChildren()do
-if aBtn:IsA"TextButton"then
-J(aBtn,"TextTransparency",1,0.15):Play()
-J(aBtn,"BackgroundTransparency",1,0.15):Play()
-end
-end
-end)
-
-task.delay(0.5,function()
+local aCloseSize=J(aE,"Size",UDim2.fromOffset(250*1.08,150*1.08),0.2)
+aCloseSize:Play()
+local aCloseScreen=J(aG,"BackgroundTransparency",1,0.15)
+aCloseScreen:Play()
+local aCloseFade=J(aE,"BackgroundTransparency",1,0.15)
+aCloseFade:Play()
+aCloseFade.Completed:Connect(function()
 aG:Destroy()
 end)
 end
@@ -4703,6 +4632,19 @@ Color="Colors.Background"
 }
 }
 }
+})
+
+-- Diagonal stripe pattern overlay
+local aStripe=E("ImageLabel","StripePattern",ak,{
+Size=UDim2.fromScale(1,1),
+BackgroundTransparency=1,
+Image="rbxassetid://2159415882",
+ImageTransparency=0.88,
+ImageColor3=Color3.fromRGB(255,255,255),
+ScaleType=Enum.ScaleType.Tile,
+SliceCenter=Rect.new(0,0,64,64),
+TileSize=UDim2.fromOffset(28,28),
+ZIndex=0
 })
 
 u(ak.Destroying,function()
