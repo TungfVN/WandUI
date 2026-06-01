@@ -63,7 +63,7 @@ Dark=Color3.fromRGB(200,200,200),
 Darker=Color3.fromRGB(175,175,175),
 },
 Slider={
-SliderBar=Color3.fromRGB(1,76,105),
+SliderBar=Color3.fromRGB(230,230,230),
 SliderNumber=Color3.fromRGB(232,233,235),
 },
 Dropdown={
@@ -2817,7 +2817,7 @@ Size=UDim2.fromScale(0,1),
 BorderSizePixel=0,
 ThemeTag={
 OBJECTS=aE,
-BackgroundColor3="Colors.Primary"
+BackgroundColor3="Colors.Slider.SliderBar"
 },
 Elements={
 Corner=UDim.new(0.5,0)
@@ -2826,7 +2826,7 @@ Corner=UDim.new(0.5,0)
 
 local aM=E("Frame",aK,{
 Size=UDim2.new(0,6,0,12),
-BackgroundColor3=Color3.fromRGB(220,220,220),
+BackgroundColor3=Color3.fromRGB(255,255,255),
 Position=UDim2.fromScale(0,0.5),
 AnchorPoint=Vector2.new(0.5,0.5),
 BackgroundTransparency=0.2,
@@ -3946,13 +3946,13 @@ local ay=av.Options or {}
 local aD=V[self]
 
 local aE=E("Frame","DialogFrame",{
-Size=UDim2.fromOffset(250*1.08,150*1.08),
+Size=UDim2.fromOffset(280,160),
 Position=UDim2.fromScale(0.5,0.5),
 AnchorPoint=Vector2.new(0.5,0.5),
 Active=true,
 BackgroundTransparency=1,
 Elements={
-Corner=UDim.new(0,7),
+Corner=UDim.new(0,10),
 Gradient={
 Rotation=270,
 ThemeTag={
@@ -3966,7 +3966,7 @@ Font=Enum.Font.GothamBold,
 Size=UDim2.new(1,-20,0,25),
 Text=aw,
 TextXAlignment=Enum.TextXAlignment.Center,
-TextSize=18,
+TextSize=15,
 Position=UDim2.new(0.5,0,0,10),
 AnchorPoint=Vector2.new(0.5,0),
 BackgroundTransparency=1,
@@ -3981,7 +3981,7 @@ Size=UDim2.new(1,-30,0,0),
 AutomaticSize=Enum.AutomaticSize.Y,
 Text=ax,
 TextXAlignment=Enum.TextXAlignment.Center,
-TextSize=14,
+TextSize=12,
 Position=UDim2.new(0.5,0,0,38),
 AnchorPoint=Vector2.new(0.5,0),
 BackgroundTransparency=1,
@@ -4024,12 +4024,35 @@ if aH then aH:Clone().Parent=aG end
 
 aE.Parent=aG
 
-local aSizeTween=J(aE,"Size",UDim2.fromOffset(250,150),0.2)
-aSizeTween:Play()
-local aFadeTween=J(aE,"BackgroundTransparency",0,0.15)
+-- Decorative: Add UIScale for bounce animation
+local aUIScale=E("UIScale",{Scale=0.3})
+aUIScale.Parent=aE
+
+-- Decorative: Add glow stroke to dialog frame
+local aGlowStroke=E("UIStroke",{Color=Color3.fromRGB(200,200,200),Thickness=1.5,Transparency=1})
+aGlowStroke.Parent=aE
+
+-- Decorative: Add shadow behind dialog
+local aShadow=E("Frame",aG,{
+Size=UDim2.new(1,20,1,20),
+Position=UDim2.fromScale(0.5,0.5),
+AnchorPoint=Vector2.new(0.5,0.5),
+BackgroundTransparency=1,
+Elements={Corner=UDim.new(0,14)},
+ThemeTag={OBJECTS=aD,BackgroundColor3="Colors.Primary"}
+})
+
+-- Open animation: bounce in with glow
+local aScaleTween=J(aUIScale,"Scale",1,0.4,Enum.EasingStyle.Back,Enum.EasingDirection.Out)
+aScaleTween:Play()
+local aFadeTween=J(aE,"BackgroundTransparency",0,0.2)
 aFadeTween:Play()
 local aScreenTween=J(aG,"BackgroundTransparency",0.3,0.15)
 aScreenTween:Play()
+local aGlowTween=J(aGlowStroke,"Transparency",0.3,0.25)
+aGlowTween:Play()
+local aShadowTween=J(aShadow,"BackgroundTransparency",0.7,0.3)
+aShadowTween:Play()
 
 local aI=1
 local aJ={}
@@ -4047,7 +4070,8 @@ Font=Enum.Font.GothamBold,
 TextSize=12,
 BackgroundTransparency=1,
 Elements={
-Corner=UDim.new(0,5)
+Corner=UDim.new(0,8),
+Stroke=Color3.fromRGB(180,180,180)
 },
 ThemeTag={
 OBJECTS=aD,
@@ -4078,29 +4102,34 @@ end
 function aJ:Close()
 local aTitleLabel=aE:FindFirstChild("DialogTitle")
 local aDescLabel=aE:FindFirstChild("DialogDesc")
-local aCloseSize=J(aE,"Size",UDim2.fromOffset(250*1.08,150*1.08),0.2)
-aCloseSize:Play()
-local aCloseScreen=J(aG,"BackgroundTransparency",1,0.2)
-aCloseScreen:Play()
-local aCloseFade=J(aE,"BackgroundTransparency",1,0.2)
-aCloseFade:Play()
+
+-- Close animation: flash glow then shrink
+local aFlashTween=J(aGlowStroke,"Transparency",0,0.08)
+aFlashTween:Play()
+
+task.delay(0.1,function()
+-- Shrink with Back easing
+J(aUIScale,"Scale",0,0.3,Enum.EasingStyle.Back,Enum.EasingDirection.In):Play()
+J(aE,"BackgroundTransparency",1,0.25):Play()
+J(aG,"BackgroundTransparency",1,0.2):Play()
+J(aGlowStroke,"Transparency",1,0.15):Play()
+J(aShadow,"BackgroundTransparency",1,0.15):Play()
+
 if aTitleLabel then
-local aCloseTitle=J(aTitleLabel,"TextTransparency",1,0.2)
-aCloseTitle:Play()
+J(aTitleLabel,"TextTransparency",1,0.2):Play()
 end
 if aDescLabel then
-local aCloseDesc=J(aDescLabel,"TextTransparency",1,0.2)
-aCloseDesc:Play()
+J(aDescLabel,"TextTransparency",1,0.2):Play()
 end
 for _,aBtn in aF:GetChildren()do
 if aBtn:IsA"TextButton"then
-local aCloseBtn=J(aBtn,"TextTransparency",1,0.15)
-aCloseBtn:Play()
-local aCloseBtnBg=J(aBtn,"BackgroundTransparency",1,0.15)
-aCloseBtnBg:Play()
+J(aBtn,"TextTransparency",1,0.15):Play()
+J(aBtn,"BackgroundTransparency",1,0.15):Play()
 end
 end
-aCloseFade.Completed:Connect(function()
+end)
+
+task.delay(0.5,function()
 aG:Destroy()
 end)
 end
@@ -4845,8 +4874,8 @@ return UDim2.new(0,math.clamp(aB,135,210),0.5,15)
 end)
 
 local aA={
-Title="Hacker Hub",
-Content="Do You Want Close This UI?",
+Title="Close Window?",
+Content="You Want Close UI?",
 Options={
 {
 Title="Yes",
@@ -4894,3 +4923,386 @@ return as
 end
 
 return s
+
+end)()
+
+Window = Library:MakeWindow({
+    Title = "Hacker Hub - Blox Fruits",
+    SubTitle = "by TungfVN",
+    ScriptFolder = "HackerHub"
+})
+-- Minimizer (Wand UI built-in)
+local Minimizer = Window:NewMinimizer({
+    KeyCode = Enum.KeyCode.LeftControl
+})
+local MobileButton = Minimizer:CreateMobileMinimizer({
+    Image = "rbxassetid://74632592792195",
+    BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+})
+
+-- UI state management
+local _isUIOpen = true
+
+local function setUIMinimized(minimized)
+    _isUIOpen = not minimized
+    if minimized then
+        Minimizer:Minimize()
+    else
+        Minimizer:Cancel()
+    end
+end
+-- Set theme Monochrome (nếu library hỗ trợ)
+task.spawn(function()
+    pcall(function()
+        if Library:IsValidTheme("Monochrome") then
+            Library:SetTheme("Monochrome")
+        end
+    end)
+end)
+
+-- Add custom themes to library
+pcall(function()
+    local Themes = Library.Themes
+    
+    if Themes and not Themes["Monochrome"] then
+        Themes["Monochrome"] = {
+            Name = "Monochrome",
+            Colors = {
+                Background = ColorSequence.new{
+                    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(18, 18, 18)),
+                    ColorSequenceKeypoint.new(0.50, Color3.fromRGB(24, 24, 24)),
+                    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(18, 18, 18))
+                },
+                Primary = Color3.fromRGB(200, 200, 200),
+                OnPrimary = Color3.fromRGB(140, 140, 140),
+                ScrollBar = Color3.fromRGB(120, 120, 120),
+                Stroke = Color3.fromRGB(40, 40, 40),
+                Error = Color3.fromRGB(255, 80, 80),
+                Icons = Color3.fromRGB(220, 220, 220),
+                JoinButton = Color3.fromRGB(60, 60, 60),
+                Link = Color3.fromRGB(180, 180, 180),
+                Dialog = {Background = Color3.fromRGB(22, 22, 22)},
+                Buttons = {
+                    Holding = Color3.fromRGB(30, 30, 30),
+                    Default = Color3.fromRGB(22, 22, 24)
+                },
+                Border = {
+                    Holding = Color3.fromRGB(55, 55, 55),
+                    Default = Color3.fromRGB(35, 35, 35)
+                },
+                Text = {
+                    Default = Color3.fromRGB(255, 255, 255),
+                    Dark = Color3.fromRGB(190, 190, 190),
+                    Darker = Color3.fromRGB(160, 160, 160)
+                },
+                Slider = {
+                    SliderBar = Color3.fromRGB(230, 230, 230),
+                    SliderNumber = Color3.fromRGB(220, 220, 220)
+                },
+                Dropdown = {Holder = Color3.fromRGB(25, 25, 25)}
+            },
+            Icons = {
+                Error = "rbxassetid://10709752996",
+                Button = "rbxassetid://10709791437",
+                Close = "rbxassetid://10747384394",
+                TextBox = "rbxassetid://15637081879",
+                Search = "rbxassetid://10734943674",
+                Keybind = "rbxassetid://10734982144",
+                Dropdown = {Open = "rbxassetid://10709791523", Close = "rbxassetid://10709790948"}
+            },
+            Font = {
+                Normal = Enum.Font.BuilderSans,
+                Medium = Enum.Font.BuilderSansMedium,
+                Bold = Enum.Font.BuilderSansBold,
+                ExtraBold = Enum.Font.BuilderSansExtraBold,
+                SliderValue = Enum.Font.FredokaOne
+            },
+            BackgroundTransparency = 0.03
+        }
+    end
+    
+    if Themes and not Themes["Blood"] then
+        Themes["Blood"] = {
+            Name = "Blood",
+            Colors = {
+                Background = ColorSequence.new{
+                    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(20, 10, 10)),
+                    ColorSequenceKeypoint.new(0.50, Color3.fromRGB(30, 15, 15)),
+                    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 10, 10))
+                },
+                Primary = Color3.fromRGB(200, 40, 40),
+                OnPrimary = Color3.fromRGB(130, 25, 25),
+                ScrollBar = Color3.fromRGB(150, 20, 20),
+                Stroke = Color3.fromRGB(50, 25, 25),
+                Error = Color3.fromRGB(255, 60, 60),
+                Icons = Color3.fromRGB(230, 180, 180),
+                JoinButton = Color3.fromRGB(80, 30, 30),
+                Link = Color3.fromRGB(255, 80, 80),
+                Dialog = {Background = Color3.fromRGB(25, 12, 12)},
+                Buttons = {
+                    Holding = Color3.fromRGB(35, 18, 18),
+                    Default = Color3.fromRGB(28, 14, 14)
+                },
+                Border = {
+                    Holding = Color3.fromRGB(65, 30, 30),
+                    Default = Color3.fromRGB(40, 20, 20)
+                },
+                Text = {
+                    Default = Color3.fromRGB(255, 230, 230),
+                    Dark = Color3.fromRGB(200, 160, 160),
+                    Darker = Color3.fromRGB(170, 130, 130)
+                },
+                Slider = {
+                    SliderBar = Color3.fromRGB(230, 230, 230),
+                    SliderNumber = Color3.fromRGB(230, 180, 180)
+                },
+                Dropdown = {Holder = Color3.fromRGB(25, 12, 12)}
+            },
+            Icons = {
+                Error = "rbxassetid://10709752996",
+                Button = "rbxassetid://10709791437",
+                Close = "rbxassetid://10747384394",
+                TextBox = "rbxassetid://15637081879",
+                Search = "rbxassetid://10734943674",
+                Keybind = "rbxassetid://10734982144",
+                Dropdown = {Open = "rbxassetid://10709791523", Close = "rbxassetid://10709790948"}
+            },
+            Font = {
+                Normal = Enum.Font.BuilderSans,
+                Medium = Enum.Font.BuilderSansMedium,
+                Bold = Enum.Font.BuilderSansBold,
+                ExtraBold = Enum.Font.BuilderSansExtraBold,
+                SliderValue = Enum.Font.FredokaOne
+            },
+            BackgroundTransparency = 0.03
+        }
+    end
+    
+    if Themes and not Themes["Ocean"] then
+        Themes["Ocean"] = {
+            Name = "Ocean",
+            Colors = {
+                Background = ColorSequence.new{
+                    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(10, 18, 30)),
+                    ColorSequenceKeypoint.new(0.50, Color3.fromRGB(15, 25, 40)),
+                    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(10, 18, 30))
+                },
+                Primary = Color3.fromRGB(30, 120, 220),
+                OnPrimary = Color3.fromRGB(20, 80, 150),
+                ScrollBar = Color3.fromRGB(20, 100, 180),
+                Stroke = Color3.fromRGB(20, 35, 55),
+                Error = Color3.fromRGB(255, 100, 100),
+                Icons = Color3.fromRGB(150, 200, 255),
+                JoinButton = Color3.fromRGB(20, 100, 80),
+                Link = Color3.fromRGB(80, 180, 255),
+                Dialog = {Background = Color3.fromRGB(12, 20, 35)},
+                Buttons = {
+                    Holding = Color3.fromRGB(18, 28, 45),
+                    Default = Color3.fromRGB(14, 22, 38)
+                },
+                Border = {
+                    Holding = Color3.fromRGB(30, 50, 75),
+                    Default = Color3.fromRGB(22, 38, 58)
+                },
+                Text = {
+                    Default = Color3.fromRGB(230, 240, 255),
+                    Dark = Color3.fromRGB(160, 190, 220),
+                    Darker = Color3.fromRGB(130, 160, 200)
+                },
+                Slider = {
+                    SliderBar = Color3.fromRGB(230, 230, 230),
+                    SliderNumber = Color3.fromRGB(150, 200, 255)
+                },
+                Dropdown = {Holder = Color3.fromRGB(12, 20, 35)}
+            },
+            Icons = {
+                Error = "rbxassetid://10709752996",
+                Button = "rbxassetid://10709791437",
+                Close = "rbxassetid://10747384394",
+                TextBox = "rbxassetid://15637081879",
+                Search = "rbxassetid://10734943674",
+                Keybind = "rbxassetid://10734982144",
+                Dropdown = {Open = "rbxassetid://10709791523", Close = "rbxassetid://10709790948"}
+            },
+            Font = {
+                Normal = Enum.Font.BuilderSans,
+                Medium = Enum.Font.BuilderSansMedium,
+                Bold = Enum.Font.BuilderSansBold,
+                ExtraBold = Enum.Font.BuilderSansExtraBold,
+                SliderValue = Enum.Font.FredokaOne
+            },
+            BackgroundTransparency = 0.03
+        }
+    end
+    
+    if Themes and not Themes["Purple"] then
+        Themes["Purple"] = {
+            Name = "Purple",
+            Colors = {
+                Background = ColorSequence.new{
+                    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(20, 12, 28)),
+                    ColorSequenceKeypoint.new(0.50, Color3.fromRGB(28, 18, 38)),
+                    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 12, 28))
+                },
+                Primary = Color3.fromRGB(140, 60, 200),
+                OnPrimary = Color3.fromRGB(90, 40, 140),
+                ScrollBar = Color3.fromRGB(110, 40, 170),
+                Stroke = Color3.fromRGB(40, 25, 55),
+                Error = Color3.fromRGB(255, 80, 120),
+                Icons = Color3.fromRGB(210, 170, 255),
+                JoinButton = Color3.fromRGB(60, 30, 90),
+                Link = Color3.fromRGB(160, 80, 255),
+                Dialog = {Background = Color3.fromRGB(22, 14, 30)},
+                Buttons = {
+                    Holding = Color3.fromRGB(32, 20, 42),
+                    Default = Color3.fromRGB(25, 15, 35)
+                },
+                Border = {
+                    Holding = Color3.fromRGB(55, 35, 75),
+                    Default = Color3.fromRGB(38, 22, 52)
+                },
+                Text = {
+                    Default = Color3.fromRGB(240, 220, 255),
+                    Dark = Color3.fromRGB(180, 150, 210),
+                    Darker = Color3.fromRGB(150, 120, 180)
+                },
+                Slider = {
+                    SliderBar = Color3.fromRGB(230, 230, 230),
+                    SliderNumber = Color3.fromRGB(210, 170, 255)
+                },
+                Dropdown = {Holder = Color3.fromRGB(22, 14, 30)}
+            },
+            Icons = {
+                Error = "rbxassetid://10709752996",
+                Button = "rbxassetid://10709791437",
+                Close = "rbxassetid://10747384394",
+                TextBox = "rbxassetid://15637081879",
+                Search = "rbxassetid://10734943674",
+                Keybind = "rbxassetid://10734982144",
+                Dropdown = {Open = "rbxassetid://10709791523", Close = "rbxassetid://10709790948"}
+            },
+            Font = {
+                Normal = Enum.Font.BuilderSans,
+                Medium = Enum.Font.BuilderSansMedium,
+                Bold = Enum.Font.BuilderSansBold,
+                ExtraBold = Enum.Font.BuilderSansExtraBold,
+                SliderValue = Enum.Font.FredokaOne
+            },
+            BackgroundTransparency = 0.03
+        }
+    end
+
+    if Themes and not Themes["Forest"] then
+        Themes["Forest"] = {
+            Name = "Forest",
+            Colors = {
+                Background = ColorSequence.new{
+                    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(12, 22, 12)),
+                    ColorSequenceKeypoint.new(0.50, Color3.fromRGB(18, 32, 18)),
+                    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(12, 22, 12))
+                },
+                Primary = Color3.fromRGB(40, 160, 60),
+                OnPrimary = Color3.fromRGB(25, 110, 40),
+                ScrollBar = Color3.fromRGB(30, 120, 50),
+                Stroke = Color3.fromRGB(25, 42, 25),
+                Error = Color3.fromRGB(255, 80, 80),
+                Icons = Color3.fromRGB(170, 230, 170),
+                JoinButton = Color3.fromRGB(30, 90, 40),
+                Link = Color3.fromRGB(80, 200, 100),
+                Dialog = {Background = Color3.fromRGB(14, 24, 14)},
+                Buttons = {
+                    Holding = Color3.fromRGB(22, 35, 22),
+                    Default = Color3.fromRGB(16, 26, 16)
+                },
+                Border = {
+                    Holding = Color3.fromRGB(38, 58, 38),
+                    Default = Color3.fromRGB(28, 42, 28)
+                },
+                Text = {
+                    Default = Color3.fromRGB(220, 255, 220),
+                    Dark = Color3.fromRGB(160, 200, 160),
+                    Darker = Color3.fromRGB(130, 170, 130)
+                },
+                Slider = {
+                    SliderBar = Color3.fromRGB(230, 230, 230),
+                    SliderNumber = Color3.fromRGB(170, 230, 170)
+                },
+                Dropdown = {Holder = Color3.fromRGB(14, 24, 14)}
+            },
+            Icons = {
+                Error = "rbxassetid://10709752996",
+                Button = "rbxassetid://10709791437",
+                Close = "rbxassetid://10747384394",
+                TextBox = "rbxassetid://15637081879",
+                Search = "rbxassetid://10734943674",
+                Keybind = "rbxassetid://10734982144",
+                Dropdown = {Open = "rbxassetid://10709791523", Close = "rbxassetid://10709790948"}
+            },
+            Font = {
+                Normal = Enum.Font.BuilderSans,
+                Medium = Enum.Font.BuilderSansMedium,
+                Bold = Enum.Font.BuilderSansBold,
+                ExtraBold = Enum.Font.BuilderSansExtraBold,
+                SliderValue = Enum.Font.FredokaOne
+            },
+            BackgroundTransparency = 0.03
+        }
+    end
+
+    if Themes and not Themes["Sakura"] then
+        Themes["Sakura"] = {
+            Name = "Sakura",
+            Colors = {
+                Background = ColorSequence.new{
+                    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(28, 16, 22)),
+                    ColorSequenceKeypoint.new(0.50, Color3.fromRGB(38, 22, 30)),
+                    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(28, 16, 22))
+                },
+                Primary = Color3.fromRGB(220, 100, 150),
+                OnPrimary = Color3.fromRGB(150, 65, 100),
+                ScrollBar = Color3.fromRGB(180, 70, 120),
+                Stroke = Color3.fromRGB(50, 30, 40),
+                Error = Color3.fromRGB(255, 80, 100),
+                Icons = Color3.fromRGB(255, 180, 200),
+                JoinButton = Color3.fromRGB(80, 35, 55),
+                Link = Color3.fromRGB(255, 120, 170),
+                Dialog = {Background = Color3.fromRGB(30, 18, 24)},
+                Buttons = {
+                    Holding = Color3.fromRGB(40, 24, 32),
+                    Default = Color3.fromRGB(32, 18, 26)
+                },
+                Border = {
+                    Holding = Color3.fromRGB(65, 40, 52),
+                    Default = Color3.fromRGB(45, 28, 38)
+                },
+                Text = {
+                    Default = Color3.fromRGB(255, 230, 240),
+                    Dark = Color3.fromRGB(210, 170, 185),
+                    Darker = Color3.fromRGB(180, 140, 160)
+                },
+                Slider = {
+                    SliderBar = Color3.fromRGB(230, 230, 230),
+                    SliderNumber = Color3.fromRGB(255, 180, 200)
+                },
+                Dropdown = {Holder = Color3.fromRGB(30, 18, 24)}
+            },
+            Icons = {
+                Error = "rbxassetid://10709752996",
+                Button = "rbxassetid://10709791437",
+                Close = "rbxassetid://10747384394",
+                TextBox = "rbxassetid://15637081879",
+                Search = "rbxassetid://10734943674",
+                Keybind = "rbxassetid://10734982144",
+                Dropdown = {Open = "rbxassetid://10709791523", Close = "rbxassetid://10709790948"}
+            },
+            Font = {
+                Normal = Enum.Font.BuilderSans,
+                Medium = Enum.Font.BuilderSansMedium,
+                Bold = Enum.Font.BuilderSansBold,
+                ExtraBold = Enum.Font.BuilderSansExtraBold,
+                SliderValue = Enum.Font.FredokaOne
+            },
+            BackgroundTransparency = 0.03
+        }
+    end
+end)
