@@ -1,3 +1,28 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local a=cloneref or(function(...)return...end)
 
 local b=delfolder or deletefolder
@@ -35,9 +60,9 @@ ColorSequenceKeypoint.new(0.00,Color3.fromRGB(25,25,25)),
 ColorSequenceKeypoint.new(0.50,Color3.fromRGB(32.5,32.5,32.5)),
 ColorSequenceKeypoint.new(1.00,Color3.fromRGB(25,25,25))
 },
-Primary=Color3.fromRGB(220,220,220),
-OnPrimary=Color3.fromRGB(180,180,180),
-ScrollBar=Color3.fromRGB(200,200,200),
+Primary=Color3.fromRGB(88,101,242),
+OnPrimary=Color3.fromRGB(61,67,135),
+ScrollBar=Color3.fromRGB(1,76,105),
 Stroke=Color3.fromRGB(45,45,45),
 
 Error=Color3.fromRGB(255,102,102),
@@ -63,7 +88,7 @@ Dark=Color3.fromRGB(200,200,200),
 Darker=Color3.fromRGB(175,175,175),
 },
 Slider={
-SliderBar=Color3.fromRGB(230,230,230),
+SliderBar=Color3.fromRGB(1,76,105),
 SliderNumber=Color3.fromRGB(232,233,235),
 },
 Dropdown={
@@ -2422,15 +2447,15 @@ av=av or""
 local aw=V[self]
 
 local ax=E("Frame","Option",T[self].Container,{
-Size=UDim2.new(1,0,0,26),
+Size=UDim2.new(1,0,0,20),
 BackgroundTransparency=1
 })
 
 local ay=E("TextLabel",ax,{
 TextXAlignment=Enum.TextXAlignment.Left,
 TextTruncate=Enum.TextTruncate.AtEnd,
-Size=UDim2.new(1,-25,0,18),
-Position=UDim2.new(0,5,0,0),
+Size=UDim2.new(1,-25,1,0),
+Position=UDim2.new(0,5),
 BackgroundTransparency=1,
 TextSize=17,
 Text=av,
@@ -2439,16 +2464,6 @@ OBJECTS=aw,
 TextColor3="Colors.Text.Default",
 Font="Font.Bold"
 }
-})
-
--- White divider line below section title
-local aDivider=E("Frame","Divider",ax,{
-Size=UDim2.new(1,-10,0,1),
-Position=UDim2.new(0,5,1,-1),
-AnchorPoint=Vector2.new(0,1),
-BackgroundColor3=Color3.fromRGB(255,255,255),
-BackgroundTransparency=0.8,
-BorderSizePixel=0
 })
 
 return setmetatable({
@@ -2805,7 +2820,7 @@ Size=UDim2.fromScale(0,1),
 BorderSizePixel=0,
 ThemeTag={
 OBJECTS=aE,
-BackgroundColor3="Colors.Slider.SliderBar"
+BackgroundColor3="Colors.Primary"
 },
 Elements={
 Corner=UDim.new(0.5,0)
@@ -2814,7 +2829,7 @@ Corner=UDim.new(0.5,0)
 
 local aM=E("Frame",aK,{
 Size=UDim2.new(0,6,0,12),
-BackgroundColor3=Color3.fromRGB(255,255,255),
+BackgroundColor3=Color3.fromRGB(220,220,220),
 Position=UDim2.fromScale(0,0.5),
 AnchorPoint=Vector2.new(0.5,0.5),
 BackgroundTransparency=0.2,
@@ -3934,13 +3949,13 @@ local ay=av.Options or {}
 local aD=V[self]
 
 local aE=E("Frame","DialogFrame",{
-Size=UDim2.fromOffset(280,160),
+Size=UDim2.fromOffset(250*1.08,150*1.08),
 Position=UDim2.fromScale(0.5,0.5),
 AnchorPoint=Vector2.new(0.5,0.5),
 Active=true,
 BackgroundTransparency=1,
 Elements={
-Corner=UDim.new(0,10),
+Corner=UDim.new(0,7),
 Gradient={
 Rotation=270,
 ThemeTag={
@@ -3951,12 +3966,11 @@ Color="Colors.Background"
 Childs={
 E("TextLabel",{
 Font=Enum.Font.GothamBold,
-Size=UDim2.new(1,-20,0,20),
+Size=UDim2.new(1,0,0,20),
 Text=aw,
-TextXAlignment=Enum.TextXAlignment.Center,
+TextXAlignment=Enum.TextXAlignment.Left,
 TextSize=15,
-Position=UDim2.new(0.5,0,0,10),
-AnchorPoint=Vector2.new(0.5,0),
+Position=UDim2.fromOffset(15,5),
 BackgroundTransparency=1,
 ThemeTag={
 OBJECTS=aD,
@@ -3965,13 +3979,12 @@ TextColor3="Colors.Text.Default"
 }),
 E("TextLabel",{
 Font=Enum.Font.GothamMedium,
-Size=UDim2.new(1,-30,0,0),
+Size=UDim2.new(1,-25),
 AutomaticSize=Enum.AutomaticSize.Y,
 Text=ax,
-TextXAlignment=Enum.TextXAlignment.Center,
+TextXAlignment=Enum.TextXAlignment.Left,
 TextSize=12,
-Position=UDim2.new(0.5,0,0,38),
-AnchorPoint=Vector2.new(0.5,0),
+Position=UDim2.fromOffset(15,25),
 BackgroundTransparency=1,
 TextWrapped=true,
 ThemeTag={
@@ -3997,7 +4010,7 @@ HorizontalAlignment=Enum.HorizontalAlignment.Center
 }
 })
 
-local aG=E("Frame","Dialog",I,{
+local aG=E("Frame","Dialog",ab,{
 BackgroundTransparency=0.6,
 Active=true,
 Size=UDim2.new(1,0,1,0),
@@ -4012,7 +4025,7 @@ if aH then aH:Clone().Parent=aG end
 
 aE.Parent=aG
 
-local aSizeTween=J(aE,"Size",UDim2.fromOffset(280,160),0.2)
+local aSizeTween=J(aE,"Size",UDim2.fromOffset(250,150),0.2)
 aSizeTween:Play()
 local aFadeTween=J(aE,"BackgroundTransparency",0,0.15)
 aFadeTween:Play()
@@ -4035,8 +4048,7 @@ Font=Enum.Font.GothamBold,
 TextSize=12,
 BackgroundTransparency=1,
 Elements={
-Corner=UDim.new(0,8),
-Stroke=Color3.fromRGB(180,180,180)
+Corner=UDim.new(0,5)
 },
 ThemeTag={
 OBJECTS=aD,
@@ -4065,11 +4077,32 @@ aN.Parent=aF
 end
 
 function aJ:Close()
-local aCloseSize=J(aE,"Size",UDim2.fromOffset(280*1.08,160*1.08),0.2)
+-- Fade out text simultaneously with dialog for smooth close
+for aK,aL in aE:GetChildren()do
+if aL:IsA("TextLabel")then
+J(aL,"TextTransparency",1,0.15):Play()
+end
+end
+for aK,aL in aF:GetChildren()do
+if aL:IsA("TextButton")then
+J(aL,"TextTransparency",1,0.15):Play()
+J(aL,"BackgroundTransparency",1,0.15):Play()
+local aM=aL:FindFirstChildWhichIsA"UIStroke"
+if aM then
+J(aM,"Transparency",1,0.15):Play()
+end
+end
+end
+local aN=aE:FindFirstChildWhichIsA"UIStroke"
+if aN then
+J(aN,"Transparency",1,0.15):Play()
+end
+-- Shrink + fade everything simultaneously
+local aCloseSize=J(aE,"Size",UDim2.fromOffset(250*1.08,150*1.08),0.2)
 aCloseSize:Play()
-local aCloseScreen=J(aG,"BackgroundTransparency",1,0.15)
+local aCloseScreen=J(aG,"BackgroundTransparency",1,0.2)
 aCloseScreen:Play()
-local aCloseFade=J(aE,"BackgroundTransparency",1,0.15)
+local aCloseFade=J(aE,"BackgroundTransparency",1,0.2)
 aCloseFade:Play()
 aCloseFade.Completed:Connect(function()
 aG:Destroy()
@@ -4646,19 +4679,6 @@ Color="Colors.Background"
 }
 }
 }
-})
-
--- Diagonal stripe pattern overlay
-local aStripe=E("ImageLabel","StripePattern",ak,{
-Size=UDim2.fromScale(1,1),
-BackgroundTransparency=1,
-Image="rbxassetid://2159415882",
-ImageTransparency=0.92,
-ImageColor3=Color3.fromRGB(255,255,255),
-ScaleType=Enum.ScaleType.Tile,
-SliceCenter=Rect.new(0,0,64,64),
-TileSize=UDim2.fromOffset(28,28),
-ZIndex=0
 })
 
 u(ak.Destroying,function()
