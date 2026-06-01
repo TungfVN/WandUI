@@ -37,7 +37,7 @@ ColorSequenceKeypoint.new(1.00,Color3.fromRGB(25,25,25))
 },
 Primary=Color3.fromRGB(220,220,220),
 OnPrimary=Color3.fromRGB(180,180,180),
-ScrollBar=Color3.fromRGB(1,76,105),
+ScrollBar=Color3.fromRGB(200,200,200),
 Stroke=Color3.fromRGB(45,45,45),
 
 Error=Color3.fromRGB(255,102,102),
@@ -2422,15 +2422,15 @@ av=av or""
 local aw=V[self]
 
 local ax=E("Frame","Option",T[self].Container,{
-Size=UDim2.new(1,0,0,20),
+Size=UDim2.new(1,0,0,26),
 BackgroundTransparency=1
 })
 
 local ay=E("TextLabel",ax,{
 TextXAlignment=Enum.TextXAlignment.Left,
 TextTruncate=Enum.TextTruncate.AtEnd,
-Size=UDim2.new(1,-25,1,0),
-Position=UDim2.new(0,5),
+Size=UDim2.new(1,-25,0,18),
+Position=UDim2.new(0,5,0,0),
 BackgroundTransparency=1,
 TextSize=17,
 Text=av,
@@ -2439,6 +2439,16 @@ OBJECTS=aw,
 TextColor3="Colors.Text.Default",
 Font="Font.Bold"
 }
+})
+
+-- White divider line below section title
+local aDivider=E("Frame","Divider",ax,{
+Size=UDim2.new(1,-10,0,1),
+Position=UDim2.new(0,5,1,-1),
+AnchorPoint=Vector2.new(0,1),
+BackgroundColor3=Color3.fromRGB(255,255,255),
+BackgroundTransparency=0.8,
+BorderSizePixel=0
 })
 
 return setmetatable({
@@ -3924,13 +3934,13 @@ local ay=av.Options or {}
 local aD=V[self]
 
 local aE=E("Frame","DialogFrame",{
-Size=UDim2.fromOffset(250*1.08,150*1.08),
+Size=UDim2.fromOffset(280,160),
 Position=UDim2.fromScale(0.5,0.5),
 AnchorPoint=Vector2.new(0.5,0.5),
 Active=true,
 BackgroundTransparency=1,
 Elements={
-Corner=UDim.new(0,7),
+Corner=UDim.new(0,10),
 Gradient={
 Rotation=270,
 ThemeTag={
@@ -3941,11 +3951,12 @@ Color="Colors.Background"
 Childs={
 E("TextLabel",{
 Font=Enum.Font.GothamBold,
-Size=UDim2.new(1,0,0,20),
+Size=UDim2.new(1,-20,0,20),
 Text=aw,
-TextXAlignment=Enum.TextXAlignment.Left,
+TextXAlignment=Enum.TextXAlignment.Center,
 TextSize=15,
-Position=UDim2.fromOffset(15,5),
+Position=UDim2.new(0.5,0,0,10),
+AnchorPoint=Vector2.new(0.5,0),
 BackgroundTransparency=1,
 ThemeTag={
 OBJECTS=aD,
@@ -3954,12 +3965,13 @@ TextColor3="Colors.Text.Default"
 }),
 E("TextLabel",{
 Font=Enum.Font.GothamMedium,
-Size=UDim2.new(1,-25),
+Size=UDim2.new(1,-30,0,0),
 AutomaticSize=Enum.AutomaticSize.Y,
 Text=ax,
-TextXAlignment=Enum.TextXAlignment.Left,
+TextXAlignment=Enum.TextXAlignment.Center,
 TextSize=12,
-Position=UDim2.fromOffset(15,25),
+Position=UDim2.new(0.5,0,0,38),
+AnchorPoint=Vector2.new(0.5,0),
 BackgroundTransparency=1,
 TextWrapped=true,
 ThemeTag={
@@ -4000,7 +4012,7 @@ if aH then aH:Clone().Parent=aG end
 
 aE.Parent=aG
 
-local aSizeTween=J(aE,"Size",UDim2.fromOffset(250,150),0.2)
+local aSizeTween=J(aE,"Size",UDim2.fromOffset(280,160),0.2)
 aSizeTween:Play()
 local aFadeTween=J(aE,"BackgroundTransparency",0,0.15)
 aFadeTween:Play()
@@ -4023,7 +4035,8 @@ Font=Enum.Font.GothamBold,
 TextSize=12,
 BackgroundTransparency=1,
 Elements={
-Corner=UDim.new(0,5)
+Corner=UDim.new(0,8),
+Stroke=Color3.fromRGB(180,180,180)
 },
 ThemeTag={
 OBJECTS=aD,
@@ -4052,7 +4065,7 @@ aN.Parent=aF
 end
 
 function aJ:Close()
-local aCloseSize=J(aE,"Size",UDim2.fromOffset(250*1.08,150*1.08),0.2)
+local aCloseSize=J(aE,"Size",UDim2.fromOffset(280*1.08,160*1.08),0.2)
 aCloseSize:Play()
 local aCloseScreen=J(aG,"BackgroundTransparency",1,0.15)
 aCloseScreen:Play()
@@ -4620,6 +4633,7 @@ local ak=E("Frame","Window",I,{
 Position=UDim2.new(0.5,-ah.X.Offset/2,0.5,-ah.Y.Offset/2),
 Active=true,
 Size=ah,
+ClipsDescendants=true,
 ThemeTag={
 BackgroundTransparency="BackgroundTransparency"
 },
@@ -4639,7 +4653,7 @@ local aStripe=E("ImageLabel","StripePattern",ak,{
 Size=UDim2.fromScale(1,1),
 BackgroundTransparency=1,
 Image="rbxassetid://2159415882",
-ImageTransparency=0.88,
+ImageTransparency=0.92,
 ImageColor3=Color3.fromRGB(255,255,255),
 ScaleType=Enum.ScaleType.Tile,
 SliceCenter=Rect.new(0,0,64,64),
@@ -4816,8 +4830,8 @@ return UDim2.new(0,math.clamp(aB,135,210),0.5,15)
 end)
 
 local aA={
-Title="Hacker Hub",
-Content="Do You Want Close This UI?",
+Title="Close Window?",
+Content="You Want Close UI?",
 Options={
 {
 Title="Yes",
