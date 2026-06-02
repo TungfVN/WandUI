@@ -1785,8 +1785,6 @@ ImageTransparency=0.3,
 Image=am.Icon or""
 })
 
-local arScale=E("UIScale",ar,{Scale=1})
-
 local as=function()
 
 
@@ -3701,8 +3699,6 @@ Container=aD
 table.insert(S,ay)
 
 u(aC.Activated,function()
-arScale.Scale=0.8
-J(arScale,"Scale",1,0.25):Play()
 ay:Select()
 end)
 
@@ -3819,6 +3815,20 @@ Color="Colors.Background"
 }
 },
 Childs={
+E("ImageLabel","StripePattern",{
+Size=UDim2.fromScale(1,1),
+BackgroundTransparency=1,
+Image="rbxassetid://2159415882",
+ImageTransparency=0.92,
+ImageColor3=Color3.fromRGB(255,255,255),
+ScaleType=Enum.ScaleType.Tile,
+SliceCenter=Rect.new(0,0,64,64),
+TileSize=UDim2.fromOffset(28,28),
+ZIndex=0,
+Elements={
+Corner=UDim.new(0,6)
+}
+}),
 E("TextLabel","Title",{
 Size=UDim2.new(1,-20,0,20),
 TextTruncate=Enum.TextTruncate.AtEnd,
@@ -4687,15 +4697,6 @@ local ak=E("Frame","Window",I,{
 Position=UDim2.new(0.5,-ah.X.Offset/2,0.5,-ah.Y.Offset/2),
 Active=true,
 Size=ah,
-ClipsDescendants=true,
-BackgroundTransparency=1,
-Elements={
-Corner=UDim.new(0,8)
-}
-})
-
-local akBg=E("Frame","WindowBg",ak,{
-Size=UDim2.fromScale(1,1),
 BackgroundColor3=Color3.fromRGB(25,25,25),
 ThemeTag={
 BackgroundTransparency="BackgroundTransparency"
@@ -4712,7 +4713,7 @@ Color="Colors.Background"
 })
 
 -- Diagonal stripe pattern overlay
-local aStripe=E("ImageLabel","StripePattern",akBg,{
+local aStripe=E("ImageLabel","StripePattern",ak,{
 Size=UDim2.fromScale(1,1),
 BackgroundTransparency=1,
 Image="rbxassetid://2159415882",
@@ -4721,7 +4722,10 @@ ImageColor3=Color3.fromRGB(255,255,255),
 ScaleType=Enum.ScaleType.Tile,
 SliceCenter=Rect.new(0,0,64,64),
 TileSize=UDim2.fromOffset(28,28),
-ZIndex=0
+ZIndex=0,
+Elements={
+Corner=UDim.new(0,8)
+}
 })
 
 u(ak.Destroying,function()
@@ -4799,8 +4803,7 @@ BackgroundColor3=Color3.new(1,1,1),
 Image="rbxassetid://10734896206",
 AutoButtonColor=false,
 Elements={
-Corner=UDim.new(0.2,0),
-Stroke=Color3.fromRGB(220,220,220)
+Corner=UDim.new(0.2,0)
 }
 })
 }
