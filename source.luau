@@ -4941,14 +4941,19 @@ end
 
 function s.AddFontObject(ab)
 table.insert(s.FontObjects,ab)
-s.UpdateFont(s.FontPath)
+-- Don't call UpdateFont immediately, just track the object
+-- UpdateFont will be called when user changes font via SetFont
 end
 
 function s.UpdateFont(ab)
 s.FontPath=ab
 for ac,ad in s.FontObjects do
 pcall(function()
+if ad.FontFace then
 ad.FontFace=Font.new(ab,ad.FontFace.Weight,ad.FontFace.Style)
+else
+ad.FontFace=Font.new(ab,Enum.FontWeight.Regular)
+end
 end)
 end
 end
