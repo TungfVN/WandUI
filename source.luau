@@ -578,7 +578,9 @@ Themes=r,
 
 Connections={},
 Options={},
-Tabs={}
+Tabs={},
+FontObjects={},
+FontPath="rbxasset://fonts/families/BuilderSans.json"
 }
 
 s.Info=s.Information
@@ -1637,6 +1639,13 @@ H[J](self,K)
 else
 self[J]=K
 end
+end
+
+-- Auto-track font objects for FontFace system (like WindUI)
+if(self:IsA("TextLabel")or self:IsA("TextButton")or self:IsA("TextBox"))and I.Font then
+pcall(function()
+s.AddFontObject(self)
+end)
 end
 end
 
@@ -4930,10 +4939,27 @@ self.WindowSettings.SelectedTheme=ac.Name
 C:update()
 end
 
+function s.AddFontObject(ab)
+table.insert(s.FontObjects,ab)
+s.UpdateFont(s.FontPath)
+end
+
+function s.UpdateFont(ab)
+s.FontPath=ab
+for ac,ad in s.FontObjects do
+pcall(function()
+ad.FontFace=Font.new(ab,ad.FontFace.Weight,ad.FontFace.Style)
+end)
+end
+end
+
 function s:SetFont(ab)
-assert(type(ab)=="table",`"Library.SetFont". 'table' expected, got {typeof(ab)}`)
+if type(ab)=="string"then
+s.UpdateFont(ab)
+elseif type(ab)=="table"then
 self.CurrentTheme.Font=ab
 C:update()
+end
 end
 
 function s:SetBackgroundTransparency(ab)
