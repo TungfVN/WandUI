@@ -5028,8 +5028,6 @@ local aA = {
 	}
 }
 
--- GỌI DIALOG (có thể đặt ở bất kỳ đâu bạn muốn)
-showConfirmationDialog(aA)
 
 u(aq.MouseEnter,function()aq.BackgroundTransparency=0.65 end)
 u(aq.MouseLeave,function()aq.BackgroundTransparency=1.00 end)
