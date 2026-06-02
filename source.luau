@@ -1,3 +1,28 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local a=cloneref or(function(...)return...end)
 
 local b=delfolder or deletefolder
@@ -4899,8 +4924,8 @@ return UDim2.new(0,math.clamp(aB,135,210),0.5,15)
 end)
 
 local aA={
-Title="Hacker Hub",
-Content="Do You Want Close This UI?",
+Title="Close Window?",
+Content="You Want Close UI?",
 Options={
 {
 Title="Yes",
