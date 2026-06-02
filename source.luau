@@ -4728,15 +4728,13 @@ Corner=UDim.new(0,8)
 }
 })
 
--- ==================== TOÀN BỘ SCRIPT GỐC + DIALOG MỚI ====================
-
 u(ak.Destroying,function()
-	self:Destroy()
+self:Destroy()
 end)
 
 u(I:GetAttributeChangedSignal"UID",function()
-	self:Destroy()
-	ak:Destroy()
+self:Destroy()
+ak:Destroy()
 end)
 
 D.Draggable(ak,ad,0.5)
@@ -4745,77 +4743,77 @@ local al=E("Folder","Components",ak)
 local am=E("Folder","Dropdowns",I)
 
 local an=E("Frame","TopBar",al,{
-	Size=UDim2.new(1,0,0,28),
-	BackgroundTransparency=1
+Size=UDim2.new(1,0,0,28),
+BackgroundTransparency=1
 })
 
 local ao=E("TextLabel","Title",an,{
-	TextXAlignment=Enum.TextXAlignment.Left,
-	AutomaticSize=Enum.AutomaticSize.XY,
-	Position=UDim2.new(0,15,0.5,0),
-	AnchorPoint=Vector2.new(0,0.5),
-	Text=ae.Title,
-	TextSize=12,
-	BackgroundTransparency=1,
-	ThemeTag={
-		TextColor3="Colors.Text.Default",
-		Font="Font.Bold"
-	},
-	Childs={
-		E("TextLabel","SubTitle",{
-			Size=UDim2.fromScale(0,1),
-			AutomaticSize="X",
-			AnchorPoint=Vector2.new(0,1),
-			Position=UDim2.new(1,5,0.9),
-			Text=ae.SubTitle,
-			BackgroundTransparency=1,
-			TextXAlignment="Left",
-			TextYAlignment="Bottom",
-			TextSize=8,
-			ThemeTag={
-				TextColor3="Colors.Text.Dark",
-				Font="Font.Normal"
-			}
-		})
-	}
+TextXAlignment=Enum.TextXAlignment.Left,
+AutomaticSize=Enum.AutomaticSize.XY,
+Position=UDim2.new(0,15,0.5,0),
+AnchorPoint=Vector2.new(0,0.5),
+Text=ae.Title,
+TextSize=12,
+BackgroundTransparency=1,
+ThemeTag={
+TextColor3="Colors.Text.Default",
+Font="Font.Bold"
+},
+Childs={
+E("TextLabel","SubTitle",{
+Size=UDim2.fromScale(0,1),
+AutomaticSize="X",
+AnchorPoint=Vector2.new(0,1),
+Position=UDim2.new(1,5,0.9),
+Text=ae.SubTitle,
+BackgroundTransparency=1,
+TextXAlignment="Left",
+TextYAlignment="Bottom",
+TextSize=8,
+ThemeTag={
+TextColor3="Colors.Text.Dark",
+Font="Font.Normal"
+}
+})
+}
 })
 
 local ap=E("Folder","Buttons",an,{
-	Childs={
-		E("ImageButton","Close",{
-			Size=UDim2.new(0,18,0,18),
-			Position=UDim2.new(1,-10,0.5),
-			AnchorPoint=Vector2.new(1,0.5),
-			BackgroundTransparency=1,
-			BackgroundColor3=Color3.fromRGB(255,35,35),
-			AutoButtonColor=false,
-			ThemeTag={
-				Image="Icons.Close"
-			},
-			Elements={
-				Corner=UDim.new(0.2,0)
-			}
-		}),
-		E("ImageButton","Minimize",{
-			Size=UDim2.new(0,18,0,18),
-			Position=UDim2.new(1,-35,0.5),
-			AnchorPoint=Vector2.new(1,0.5),
-			BackgroundTransparency=1,
-			BackgroundColor3=Color3.new(1,1,1),
-			Image="rbxassetid://10734896206",
-			AutoButtonColor=false,
-			Elements={
-				Corner=UDim.new(0.2,0)
-			}
-		})
-	}
+Childs={
+E("ImageButton","Close",{
+Size=UDim2.new(0,18,0,18),
+Position=UDim2.new(1,-10,0.5),
+AnchorPoint=Vector2.new(1,0.5),
+BackgroundTransparency=1,
+BackgroundColor3=Color3.fromRGB(255,35,35),
+AutoButtonColor=false,
+ThemeTag={
+Image="Icons.Close"
+},
+Elements={
+Corner=UDim.new(0.2,0)
+}
+}),
+E("ImageButton","Minimize",{
+Size=UDim2.new(0,18,0,18),
+Position=UDim2.new(1,-35,0.5),
+AnchorPoint=Vector2.new(1,0.5),
+BackgroundTransparency=1,
+BackgroundColor3=Color3.new(1,1,1),
+Image="rbxassetid://10734896206",
+AutoButtonColor=false,
+Elements={
+Corner=UDim.new(0.2,0)
+}
+})
+}
 })
 
 local aq=ap.Minimize
 local ar=ap.Close
 
 local as=setmetatable(ae,{
-	__index=R.Window
+__index=R.Window
 })
 
 local at,au=aa(af,an)
@@ -4824,210 +4822,93 @@ at.Parent=al
 au.Parent=al
 
 local av=table.freeze{
-	ContainerHolder=au,
-	TabsContainer=at,
-	Components=al,
-	MainFrame=ak
+ContainerHolder=au,
+TabsContainer=at,
+Components=al,
+MainFrame=ak
 }
 
 function as:GetElements()
-	return av
+return av
 end
 
 local aw=E("Frame","ControlWindowSize",ak,{
-	Size=UDim2.new(0,35,0,35),
-	Position=ak.Size,
-	AnchorPoint=Vector2.new(0.8,0.8),
-	BackgroundTransparency=1,
-	Active=true,
-	Elements={
-		Corner=UDim.new(0,6)
-	},
-	ThemeTag={
-		BackgroundColor3="Colors.OnPrimary"
-	}
+Size=UDim2.new(0,35,0,35),
+Position=ak.Size,
+AnchorPoint=Vector2.new(0.8,0.8),
+BackgroundTransparency=1,
+Active=true,
+Elements={
+Corner=UDim.new(0,6)
+},
+ThemeTag={
+BackgroundColor3="Colors.OnPrimary"
+}
 })
 
 local ax=E("Frame","ControlTabsSize",ak,{
-	Size=UDim2.new(0,16,0.75,-30),
-	Position=UDim2.new(0,at.Size.X.Offset,0.5,15),
-	AnchorPoint=Vector2.new(0.5,0.5),
-	BackgroundTransparency=1,
-	Active=true,
-	Elements={
-		Corner=UDim.new(0,6)
-	},
-	ThemeTag={
-		BackgroundColor3="Colors.OnPrimary"
-	}
-})
+Size=UDim2.new(0,16,0.75,-30),
+Position=UDim2.new(0,at.Size.X.Offset,0.5,15),
+AnchorPoint=Vector2.new(0.5,0.5),
+BackgroundTransparency=1,
+Active=true,
+Elements={
+Corner=UDim.new(0,6)
+},
+ThemeTag={
+BackgroundColor3="Colors.OnPrimary"
+}
+})local ay=function(
 
-local ay=function(ay)
-	local az=ay:GetAttribute"Resizing"
-	ay:SetAttribute("Resizing",tick())
+ay)
+local az=ay:GetAttribute"Resizing"
+ay:SetAttribute("Resizing",tick())
 
-	if az and(tick()-az)<=0.1 then
-		return nil
-	end
-
-	J(ay,"BackgroundTransparency",0.5,0.3):Play()
-	while tick()-ay:GetAttribute"Resizing"<=0.1 do task.wait() end
-	J(ay,"BackgroundTransparency",1,0.4):Play()
+if az and(tick()-az)<=0.1 then
+return nil
 end
 
+J(ay,"BackgroundTransparency",0.5,0.3):Play()
+while tick()-ay:GetAttribute"Resizing"<=0.1 do task.wait()end
+J(ay,"BackgroundTransparency",1,0.4):Play()end
+
+
 u(aw:GetPropertyChangedSignal"Position",function()
-	ay(aw)
-	local az=aw.Position
-	ak.Size=az
-	af.UISize={az.X.Offset,az.Y.Offset}
+ay(aw)
+local az=aw.Position
+ak.Size=az
+af.UISize={az.X.Offset,az.Y.Offset}
 end)
 
 u(ax:GetPropertyChangedSignal"Position",function()
-	ay(ax)
-	local az=ax.Position
-	at.Size=UDim2.new(0,az.X.Offset,1,-an.Size.Y.Offset)
-	au.Size=UDim2.new(1,-at.Size.X.Offset,1,-an.Size.Y.Offset)
-	af.TabSize=az.X.Offset
+ay(ax)
+local az=ax.Position
+at.Size=UDim2.new(0,az.X.Offset,1,-an.Size.Y.Offset)
+au.Size=UDim2.new(1,-at.Size.X.Offset,1,-an.Size.Y.Offset)
+af.TabSize=az.X.Offset
 end)
 
 D.Draggable(aw,ad,0.68,function(az,aA,aB,aC)
-	return UDim2.fromOffset(math.clamp(aA,430,1000),math.clamp(aC,200,500))
+return UDim2.fromOffset(math.clamp(aA,430,1000),math.clamp(aC,200,500))
 end)
 
 D.Draggable(ax,ad,0.68,function(aA,aB)
-	return UDim2.new(0,math.clamp(aB,135,210),0.5,15)
+return UDim2.new(0,math.clamp(aB,135,210),0.5,15)
 end)
 
--- ==================== DIALOG XÁC NHẬN (CÓ HỌA TIẾT SỌC + VIỀN NÚT) ====================
-
-local function showConfirmationDialog(data)
-	local dialog = E("Frame", "ConfirmationDialog", I, {
-		Size = UDim2.new(0, 300, 0, 180),
-		Position = UDim2.new(0.5, 0, 0.5, 0),
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundColor3 = Color3.fromRGB(25, 25, 25),
-		BackgroundTransparency = 0.1,
-		ClipsDescendants = true,
-		Elements = {
-			Corner = UDim.new(0, 8)
-		},
-		Childs = {
-			-- Lớp sọc chéo trắng nhạt
-			E("ImageLabel", "Stripe", {
-				Size = UDim2.fromScale(1, 1),
-				BackgroundTransparency = 1,
-				Image = "rbxassetid://284402756",
-				ImageTransparency = 0.85,
-				ScaleType = Enum.ScaleType.Tile,
-				TileSize = UDim2.fromOffset(60, 60),
-				ZIndex = 1
-			}),
-			-- Khung nội dung chính
-			E("Frame", "Content", {
-				Size = UDim2.fromScale(1, 1),
-				BackgroundTransparency = 1,
-				Childs = {
-					E("UIListLayout", "Layout", {
-						Padding = UDim.new(0, 12),
-						HorizontalAlignment = Enum.HorizontalAlignment.Center,
-						VerticalAlignment = Enum.VerticalAlignment.Center,
-						SortOrder = Enum.SortOrder.LayoutOrder
-					}),
-					-- Tiêu đề
-					E("TextLabel", "Title", {
-						LayoutOrder = 1,
-						Size = UDim2.new(1, -40, 0, 24),
-						BackgroundTransparency = 1,
-						Text = data.Title,
-						TextColor3 = Color3.fromRGB(255, 255, 255),
-						TextSize = 16,
-						Font = Enum.Font.GothamBold,
-						TextXAlignment = Enum.TextXAlignment.Center
-					}),
-					-- Nội dung
-					E("TextLabel", "Desc", {
-						LayoutOrder = 2,
-						Size = UDim2.new(1, -40, 0, 40),
-						BackgroundTransparency = 1,
-						Text = data.Content,
-						TextColor3 = Color3.fromRGB(200, 200, 200),
-						TextSize = 13,
-						Font = Enum.Font.Gotham,
-						TextWrapped = true,
-						TextXAlignment = Enum.TextXAlignment.Center
-					}),
-					-- Container nút
-					E("Frame", "Buttons", {
-						LayoutOrder = 3,
-						Size = UDim2.new(1, -40, 0, 36),
-						BackgroundTransparency = 1,
-						Childs = {
-							E("UIListLayout", "BtnLayout", {
-								FillDirection = Enum.FillDirection.Horizontal,
-								Padding = UDim.new(0, 15),
-								HorizontalAlignment = Enum.HorizontalAlignment.Center,
-								SortOrder = Enum.SortOrder.LayoutOrder
-							})
-						}
-					})
-				}
-			})
-		}
-	})
-
-	local buttonsFrame = dialog.Content.Buttons
-	for i, opt in ipairs(data.Options) do
-		local btn = E("TextButton", opt.Title, {
-			LayoutOrder = i,
-			Size = UDim2.new(0, 100, 0, 34),
-			BackgroundColor3 = opt.Title == "Yes" and Color3.fromRGB(50, 180, 80) or Color3.fromRGB(180, 50, 50),
-			Text = opt.Title,
-			TextColor3 = Color3.fromRGB(255, 255, 255),
-			Font = Enum.Font.GothamBold,
-			TextSize = 14,
-			AutoButtonColor = false,
-			Elements = {
-				Corner = UDim.new(0, 6),
-				Stroke = {
-					Color = Color3.fromRGB(255, 255, 255),
-					Thickness = 2,
-					Transparency = 0.6
-				}
-			}
-		})
-
-		btn.MouseButton1Click:Connect(function()
-			if opt.Callback then
-				opt.Callback()
-			end
-			dialog:Destroy()
-		end)
-
-		btn.Parent = buttonsFrame
-	end
-
-	-- Hiệu ứng mờ dần khi xuất hiện
-	dialog.BackgroundTransparency = 0.9
-	game:GetService("TweenService"):Create(dialog, TweenInfo.new(0.2), {BackgroundTransparency = 0.1}):Play()
-end
-
--- Dữ liệu dialog mẫu
-local aA = {
-	Title = "Hacker Hub",
-	Content = "Do You Want Close This UI?",
-	Options = {
-		{
-			Title = "Yes",
-			Callback = function()
-				-- Thêm hành động khi nhấn Yes (ví dụ: ak:Destroy())
-			end
-		},
-		{
-			Title = "No"
-		}
-	}
+local aA={
+Title="Hacker Hub",
+Content="Do You Want Close This UI?",
+Options={
+{
+Title="Yes",
+Callback=function()self:Destroy()end
+},
+{
+Title="No"
 }
-
+}
+}
 
 u(aq.MouseEnter,function()aq.BackgroundTransparency=0.65 end)
 u(aq.MouseLeave,function()aq.BackgroundTransparency=1.00 end)
