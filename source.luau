@@ -1,28 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local a=cloneref or(function(...)return...end)
 
 local b=delfolder or deletefolder
@@ -1808,7 +1783,10 @@ if not A then
 A=s.CurrentTheme
 end
 
-x[y]=w(A,if type(z)=="function"then z()else z)end local y=function(
+local _=w(A,if type(z)=="function"then z()else z)
+if _~=nil then
+pcall(function()x[y]=_ end)
+end end local y=function(
 
 
 y, z, A)
@@ -1865,7 +1843,7 @@ end
 end
 
 function v:destroy()
-local C=self.Parent and table.find(self.Parent.Descendants)
+local C=self.Parent and table.find(self.Parent.Descendants,self)
 
 if C then
 table.remove(self.Parent.Descendants,C)
@@ -3309,6 +3287,11 @@ end
 local aB=V[self]
 local aC,aD,aE=am(self,aw,ax,UDim2.new(1,-38,0,0))
 
+local aFHolderTag={
+OBJECTS=aB,
+BackgroundColor3="Colors.Stroke"
+}
+
 local aF=E("Frame",aC,{
 Size=UDim2.new(0,35,0,18),
 Position=UDim2.new(1,-10,0.5),
@@ -3316,10 +3299,7 @@ AnchorPoint=Vector2.new(1,0.5),
 Elements={
 Corner=UDim.new(0.5,0)
 },
-ThemeTag={
-OBJECTS=aB,
-BackgroundColor3="Colors.Stroke"
-}
+ThemeTag=aFHolderTag
 })
 
 local aG=E("Frame",aF,{
@@ -3375,9 +3355,11 @@ local aQ=Vector2.new(aO and 1 or 0,0.5)
 local aR=aO and"Colors.Primary"or"Colors.OnPrimary"
 local aS=w(s.CurrentTheme,aR)
 
-local aHolderColor=aO and Color3.fromRGB(70,70,70)or w(s.CurrentTheme,"Colors.Stroke")
+local aHolderPath=aO and"Colors.Buttons.Holding"or"Colors.Stroke"
+local aHolderColor=w(s.CurrentTheme,aHolderPath)
 
 aH.BackgroundColor3=aR
+aFHolderTag.BackgroundColor3=aHolderPath
 
 if self.Selected and(tick()-aJ)>=aK then
 aM{
@@ -4620,20 +4602,7 @@ Color="Colors.Background"
 }
 },
 Childs={
-E("ImageLabel","StripePattern",{
-Size=UDim2.fromScale(1,1),
-BackgroundTransparency=1,
-Image="rbxassetid://2159415882",
-ImageTransparency=0.88,
-ImageColor3=Color3.fromRGB(255,255,255),
-ScaleType=Enum.ScaleType.Tile,
-SliceCenter=Rect.new(0,0,64,64),
-TileSize=UDim2.fromOffset(28,28),
-ZIndex=0,
-Elements={
-Corner=UDim.new(0,6)
-}
-}),
+
 E("TextLabel","Title",{
 Size=UDim2.new(1,-20,0,20),
 TextTruncate=Enum.TextTruncate.AtEnd,
@@ -4941,6 +4910,7 @@ aCloseScreen:Play()
 local aCloseFade=J(aE,"BackgroundTransparency",1,aCloseDur)
 aCloseFade:Play()
 aCloseFade.Completed:Connect(function()
+aD:destroy()
 aG:Destroy()
 end)
 end
@@ -5529,21 +5499,7 @@ Color="Colors.Background"
 }
 })
 
--- Diagonal stripe pattern overlay
-local aStripe=E("ImageLabel","StripePattern",ak,{
-Size=UDim2.fromScale(1,1),
-BackgroundTransparency=1,
-Image="rbxassetid://2159415882",
-ImageTransparency=0.88,
-ImageColor3=Color3.fromRGB(255,255,255),
-ScaleType=Enum.ScaleType.Tile,
-SliceCenter=Rect.new(0,0,64,64),
-TileSize=UDim2.fromOffset(28,28),
-ZIndex=0,
-Elements={
-Corner=UDim.new(0,8)
-}
-})
+
 
 u(ak.Destroying,function()
 self:Destroy()
@@ -5714,8 +5670,8 @@ return UDim2.new(0,math.clamp(aB,135,210),0.5,15)
 end)
 
 local aA={
-Title="Close Window?",
-Content="You Want Close UI?",
+Title="Hacker Hub",
+Content="Do You Want Close This UI?",
 Options={
 {
 Title="Yes",
