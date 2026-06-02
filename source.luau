@@ -2162,14 +2162,14 @@ BackgroundColor3="Colors.Buttons.Default"
 Childs={
 E("TextLabel","Title",{
 BackgroundTransparency=1,
-Font=Enum.Font.GothamMedium,
 Text=am.Title,
 TextSize=10,
 TextXAlignment=Enum.TextXAlignment.Left,
 TextTransparency=(FirstTab and 0.3)or 0,
 TextTruncate=Enum.TextTruncate.AtEnd,
 ThemeTag={
-TextColor3="Colors.Text.Default"
+TextColor3="Colors.Text.Default",
+Font="Font.Medium"
 }
 })
 }
@@ -3467,14 +3467,14 @@ Color="Colors.Stroke"
 local aG=E("TextLabel",aE,{
 Size=UDim2.new(1,-52,0,15),
 Position=UDim2.new(0,44,0,7),
-Font=Enum.Font.GothamBold,
 TextXAlignment=Enum.TextXAlignment.Left,
 BackgroundTransparency=1,
 TextSize=10,
 Text=aw,
 ThemeTag={
 OBJECTS=aA,
-TextColor3="Colors.Text.Default"
+TextColor3="Colors.Text.Default",
+Font="Font.Bold"
 }
 })
 
@@ -3483,14 +3483,14 @@ Size=UDim2.new(1,-52,0,0),
 Position=UDim2.new(0,44,0,22),
 TextWrapped=true,
 AutomaticSize=Enum.AutomaticSize.Y,
-Font=Enum.Font.Gotham,
 TextXAlignment=Enum.TextXAlignment.Left,
 BackgroundTransparency=1,
 TextSize=8,
 Text=ax,
 ThemeTag={
 OBJECTS=aA,
-TextColor3="Colors.Text.Dark"
+TextColor3="Colors.Text.Dark",
+Font="Font.Normal"
 }
 })
 
@@ -3499,13 +3499,16 @@ Size=UDim2.new(1,-14,0,16),
 AnchorPoint=Vector2.new(0.5,1),
 Position=UDim2.new(0.5,0,1,-7),
 Text="Join",
-Font=Enum.Font.GothamBold,
 TextSize=12,
 TextColor3=Color3.fromRGB(220,220,220),
 BackgroundColor3=Color3.fromRGB(50,150,50),
 AutoButtonColor=false,
 Elements={
 Corner=UDim.new(0,5)
+},
+ThemeTag={
+OBJECTS=aA,
+Font="Font.Bold"
 }
 })
 
@@ -4432,7 +4435,6 @@ Color="Colors.Background"
 },
 Childs={
 E("TextLabel",{
-Font=Enum.Font.GothamBold,
 Size=UDim2.new(1,-20,0,20),
 Text=aw,
 TextXAlignment=Enum.TextXAlignment.Center,
@@ -4442,11 +4444,11 @@ AnchorPoint=Vector2.new(0.5,0),
 BackgroundTransparency=1,
 ThemeTag={
 OBJECTS=aD,
-TextColor3="Colors.Text.Default"
+TextColor3="Colors.Text.Default",
+Font="Font.Bold"
 }
 }),
 E("TextLabel",{
-Font=Enum.Font.GothamMedium,
 Size=UDim2.new(1,-30,0,0),
 AutomaticSize=Enum.AutomaticSize.Y,
 Text=ax,
@@ -4458,7 +4460,8 @@ BackgroundTransparency=1,
 TextWrapped=true,
 ThemeTag={
 OBJECTS=aD,
-TextColor3="Colors.Text.Dark"
+TextColor3="Colors.Text.Dark",
+Font="Font.Medium"
 }
 })
 }
@@ -4513,7 +4516,6 @@ local aN=E("TextButton",{
 Size=UDim2.new(1/aI,-(((aI-1)*20)/aI),0,32),
 AutoButtonColor=false,
 Text=aL,
-Font=Enum.Font.GothamBold,
 TextSize=12,
 BackgroundTransparency=1,
 Elements={
@@ -4523,7 +4525,8 @@ Stroke=Color3.fromRGB(180,180,180)
 ThemeTag={
 OBJECTS=aD,
 BackgroundColor3="Colors.Buttons.Default",
-TextColor3="Colors.Text.Default"
+TextColor3="Colors.Text.Default",
+Font="Font.Bold"
 }
 })
 
@@ -4924,6 +4927,18 @@ assert(ac,`"Library.SetTheme". theme not found: {ab}`)
 self.CurrentTheme=ac
 self.WindowSettings.SelectedTheme=ac.Name
 
+C:update()
+end
+
+function s:SetFont(ab)
+assert(type(ab)=="table",`"Library.SetFont". 'table' expected, got {typeof(ab)}`)
+self.CurrentTheme.Font=ab
+C:update()
+end
+
+function s:SetBackgroundTransparency(ab)
+assert(type(ab)=="number",`"Library.SetBackgroundTransparency". 'number' expected, got {typeof(ab)}`)
+self.CurrentTheme.BackgroundTransparency=ab
 C:update()
 end
 
