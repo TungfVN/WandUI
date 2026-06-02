@@ -1050,17 +1050,13 @@ y(s.CurrentTheme,C,D)
 end
 end
 
-function v:update(force)
-if force then
-self.UPDATED_OBJECTS=false
-end
-if self.IS_RENDERING and not self.UPDATED_OBJECTS then
+function v:update()
+if self.IS_RENDERING then
 local C=s.CurrentTheme
-self.UPDATED_OBJECTS=true
 
 for D,E in self.Descendants do
 local F=typeof(E)
-if F=="table"then E:update(force)continue end
+if F=="table"then E:update()continue end
 
 y(C,E,D)
 end
@@ -1725,13 +1721,13 @@ BackgroundColor3="Colors.Buttons.Default"
 Childs={
 E("TextLabel","Title",{
 BackgroundTransparency=1,
+Font=Enum.Font.GothamMedium,
 Text=am.Title,
 TextSize=10,
 TextXAlignment=Enum.TextXAlignment.Left,
 TextTransparency=(FirstTab and 0.3)or 0,
 TextTruncate=Enum.TextTruncate.AtEnd,
 ThemeTag={
-Font="Font.Medium",
 TextColor3="Colors.Text.Default"
 }
 })
@@ -1785,9 +1781,7 @@ AnchorPoint=Vector2.new(0,0.5),
 BackgroundTransparency=1,
 ImageTransparency=0.3,
 Image=am.Icon or""
-})
-
-local as=function()
+})local as=function()
 
 
 local as=string.sub(ar.Image,1,13)=="rbxassetid://"
@@ -2575,6 +2569,7 @@ local aP=UDim2.new(aO and 1 or 0,0,0.5,0)
 local aQ=Vector2.new(aO and 1 or 0,0.5)
 local aR=aO and"Colors.Primary"or"Colors.OnPrimary"
 local aS=w(s.CurrentTheme,aR)
+
 local aHolderColor=aO and Color3.fromRGB(70,70,70)or w(s.CurrentTheme,"Colors.Stroke")
 
 aH.BackgroundColor3=aR
@@ -2987,6 +2982,7 @@ local aD=E("TextLabel",aC,{
 Size=UDim2.new(1,0,0,15),
 Position=UDim2.new(0,5),
 TextColor3=Color3.fromRGB(40,150,255),
+Font=Enum.Font.GothamBold,
 TextXAlignment=Enum.TextXAlignment.Left,
 BackgroundTransparency=1,
 TextSize=10,
@@ -3030,12 +3026,12 @@ Color="Colors.Stroke"
 local aG=E("TextLabel",aE,{
 Size=UDim2.new(1,-52,0,15),
 Position=UDim2.new(0,44,0,7),
+Font=Enum.Font.GothamBold,
 TextXAlignment=Enum.TextXAlignment.Left,
 BackgroundTransparency=1,
 TextSize=10,
 Text=aw,
 ThemeTag={
-Font="Font.Bold",
 OBJECTS=aA,
 TextColor3="Colors.Text.Default"
 }
@@ -3046,12 +3042,12 @@ Size=UDim2.new(1,-52,0,0),
 Position=UDim2.new(0,44,0,22),
 TextWrapped=true,
 AutomaticSize=Enum.AutomaticSize.Y,
+Font=Enum.Font.Gotham,
 TextXAlignment=Enum.TextXAlignment.Left,
 BackgroundTransparency=1,
 TextSize=8,
 Text=ax,
 ThemeTag={
-Font="Font.Normal",
 OBJECTS=aA,
 TextColor3="Colors.Text.Dark"
 }
@@ -3062,15 +3058,13 @@ Size=UDim2.new(1,-14,0,16),
 AnchorPoint=Vector2.new(0.5,1),
 Position=UDim2.new(0.5,0,1,-7),
 Text="Join",
+Font=Enum.Font.GothamBold,
 TextSize=12,
 TextColor3=Color3.fromRGB(220,220,220),
 BackgroundColor3=Color3.fromRGB(50,150,50),
 AutoButtonColor=false,
 Elements={
 Corner=UDim.new(0,5)
-},
-ThemeTag={
-Font="Font.Bold"
 }
 })
 
@@ -3997,6 +3991,7 @@ Color="Colors.Background"
 },
 Childs={
 E("TextLabel",{
+Font=Enum.Font.GothamBold,
 Size=UDim2.new(1,-20,0,20),
 Text=aw,
 TextXAlignment=Enum.TextXAlignment.Center,
@@ -4005,12 +4000,12 @@ Position=UDim2.new(0.5,0,0,10),
 AnchorPoint=Vector2.new(0.5,0),
 BackgroundTransparency=1,
 ThemeTag={
-Font="Font.Bold",
 OBJECTS=aD,
 TextColor3="Colors.Text.Default"
 }
 }),
 E("TextLabel",{
+Font=Enum.Font.GothamMedium,
 Size=UDim2.new(1,-30,0,0),
 AutomaticSize=Enum.AutomaticSize.Y,
 Text=ax,
@@ -4021,7 +4016,6 @@ AnchorPoint=Vector2.new(0.5,0),
 BackgroundTransparency=1,
 TextWrapped=true,
 ThemeTag={
-Font="Font.Medium",
 OBJECTS=aD,
 TextColor3="Colors.Text.Dark"
 }
@@ -4078,6 +4072,7 @@ local aN=E("TextButton",{
 Size=UDim2.new(1/aI,-(((aI-1)*20)/aI),0,32),
 AutoButtonColor=false,
 Text=aL,
+Font=Enum.Font.GothamBold,
 TextSize=12,
 BackgroundTransparency=1,
 Elements={
@@ -4085,7 +4080,6 @@ Corner=UDim.new(0,8),
 Stroke=Color3.fromRGB(180,180,180)
 },
 ThemeTag={
-Font="Font.Bold",
 OBJECTS=aD,
 BackgroundColor3="Colors.Buttons.Default",
 TextColor3="Colors.Text.Default"
@@ -4489,7 +4483,7 @@ assert(ac,`"Library.SetTheme". theme not found: {ab}`)
 self.CurrentTheme=ac
 self.WindowSettings.SelectedTheme=ac.Name
 
-C:update(true)
+C:update()
 end
 
 function s:SetUIScale(ab)
@@ -4515,30 +4509,6 @@ if not self.LOADED_UI_LIBRARY then
 return error("failed to get current theme: UI is not loaded",2)
 end
 return self.CurrentTheme
-end
-
-function s:ForceUpdateTheme()
-if self.ThemesObjects then
-self.ThemesObjects:update(true)
-end
-end
-
-function s:SetBackgroundTransparency(ab)
-assert(type(ab)=="number",`"Library.SetBackgroundTransparency". 'number' expected, got {typeof(ab)}`)
-local ac=self.CurrentTheme
-if ac then
-ac.BackgroundTransparency=ab
-self:ForceUpdateTheme()
-end
-end
-
-function s:SetFont(ab)
-assert(type(ab)=="table",`"Library.SetFont". 'table' expected, got {typeof(ab)}`)
-local ac=self.CurrentTheme
-if ac and ac.Font then
-ac.Font=ab
-self:ForceUpdateTheme()
-end
 end
 
 function s:Destroy()
