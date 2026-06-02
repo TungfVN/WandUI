@@ -1,28 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local a=cloneref or(function(...)return...end)
 
 local b=delfolder or deletefolder
@@ -556,6 +531,366 @@ ExtraBold=Enum.Font.BuilderSansExtraBold,
 SliderValue=Enum.Font.FredokaOne
 },
 BackgroundTransparency=0.03
+},
+Crimson={
+Colors={
+Background=ColorSequence.new{
+ColorSequenceKeypoint.new(0.00,Color3.fromRGB(30,10,10)),
+ColorSequenceKeypoint.new(0.50,Color3.fromRGB(42,14,14)),
+ColorSequenceKeypoint.new(1.00,Color3.fromRGB(30,10,10))
+},
+Primary=Color3.fromRGB(220,40,40),
+OnPrimary=Color3.fromRGB(200,160,160),
+ScrollBar=Color3.fromRGB(220,40,40),
+Stroke=Color3.fromRGB(65,25,25),
+Error=Color3.fromRGB(255,80,80),
+Icons=Color3.fromRGB(240,195,195),
+JoinButton=Color3.fromRGB(160,30,30),
+Link=Color3.fromRGB(255,90,90),
+Dialog={
+Background=Color3.fromRGB(26,8,8)
+},
+Buttons={
+Holding=Color3.fromRGB(45,16,16),
+Default=Color3.fromRGB(35,12,12)
+},
+Border={
+Holding=Color3.fromRGB(85,35,35),
+Default=Color3.fromRGB(60,28,28),
+},
+Text={
+Default=Color3.fromRGB(255,225,225),
+Dark=Color3.fromRGB(210,175,175),
+Darker=Color3.fromRGB(180,148,148),
+},
+Slider={
+SliderBar=Color3.fromRGB(220,40,40),
+SliderNumber=Color3.fromRGB(240,195,195),
+},
+Dropdown={
+Holder=Color3.fromRGB(32,11,11),
+}
+},
+Icons={
+Error="rbxassetid://10709752996",
+Button="rbxassetid://10709791437",
+Close="rbxassetid://10747384394",
+TextBox="rbxassetid://15637081879",
+Search="rbxassetid://10734943674",
+Keybind="rbxassetid://10734982144",
+Dropdown={
+Open="rbxassetid://10709791523",
+Close="rbxassetid://10709790948"
+}
+},
+Font={
+Normal=Enum.Font.BuilderSans,
+Medium=Enum.Font.BuilderSansMedium,
+Bold=Enum.Font.BuilderSansBold,
+ExtraBold=Enum.Font.BuilderSansExtraBold,
+SliderValue=Enum.Font.FredokaOne
+},
+BackgroundTransparency=0.03
+},
+Midnight={
+Colors={
+Background=ColorSequence.new{
+ColorSequenceKeypoint.new(0.00,Color3.fromRGB(8,8,20)),
+ColorSequenceKeypoint.new(0.50,Color3.fromRGB(14,14,32)),
+ColorSequenceKeypoint.new(1.00,Color3.fromRGB(8,8,20))
+},
+Primary=Color3.fromRGB(80,80,255),
+OnPrimary=Color3.fromRGB(170,170,220),
+ScrollBar=Color3.fromRGB(80,80,255),
+Stroke=Color3.fromRGB(30,30,70),
+Error=Color3.fromRGB(255,80,120),
+Icons=Color3.fromRGB(195,195,240),
+JoinButton=Color3.fromRGB(50,50,180),
+Link=Color3.fromRGB(100,100,255),
+Dialog={
+Background=Color3.fromRGB(6,6,16)
+},
+Buttons={
+Holding=Color3.fromRGB(20,20,44),
+Default=Color3.fromRGB(14,14,35)
+},
+Border={
+Holding=Color3.fromRGB(50,50,90),
+Default=Color3.fromRGB(38,38,68),
+},
+Text={
+Default=Color3.fromRGB(225,225,255),
+Dark=Color3.fromRGB(175,175,215),
+Darker=Color3.fromRGB(148,148,190),
+},
+Slider={
+SliderBar=Color3.fromRGB(80,80,255),
+SliderNumber=Color3.fromRGB(195,195,240),
+},
+Dropdown={
+Holder=Color3.fromRGB(12,12,28),
+}
+},
+Icons={
+Error="rbxassetid://10709752996",
+Button="rbxassetid://10709791437",
+Close="rbxassetid://10747384394",
+TextBox="rbxassetid://15637081879",
+Search="rbxassetid://10734943674",
+Keybind="rbxassetid://10734982144",
+Dropdown={
+Open="rbxassetid://10709791523",
+Close="rbxassetid://10709790948"
+}
+},
+Font={
+Normal=Enum.Font.BuilderSans,
+Medium=Enum.Font.BuilderSansMedium,
+Bold=Enum.Font.BuilderSansBold,
+ExtraBold=Enum.Font.BuilderSansExtraBold,
+SliderValue=Enum.Font.FredokaOne
+},
+BackgroundTransparency=0.03
+},
+Emerald={
+Colors={
+Background=ColorSequence.new{
+ColorSequenceKeypoint.new(0.00,Color3.fromRGB(8,22,14)),
+ColorSequenceKeypoint.new(0.50,Color3.fromRGB(12,32,20)),
+ColorSequenceKeypoint.new(1.00,Color3.fromRGB(8,22,14))
+},
+Primary=Color3.fromRGB(0,200,100),
+OnPrimary=Color3.fromRGB(150,210,170),
+ScrollBar=Color3.fromRGB(0,200,100),
+Stroke=Color3.fromRGB(20,50,30),
+Error=Color3.fromRGB(255,100,80),
+Icons=Color3.fromRGB(190,235,205),
+JoinButton=Color3.fromRGB(0,150,70),
+Link=Color3.fromRGB(50,220,120),
+Dialog={
+Background=Color3.fromRGB(6,18,12)
+},
+Buttons={
+Holding=Color3.fromRGB(16,30,20),
+Default=Color3.fromRGB(12,24,16)
+},
+Border={
+Holding=Color3.fromRGB(35,65,42),
+Default=Color3.fromRGB(26,50,32),
+},
+Text={
+Default=Color3.fromRGB(220,250,230),
+Dark=Color3.fromRGB(170,215,185),
+Darker=Color3.fromRGB(145,190,160),
+},
+Slider={
+SliderBar=Color3.fromRGB(0,200,100),
+SliderNumber=Color3.fromRGB(190,235,205),
+},
+Dropdown={
+Holder=Color3.fromRGB(10,20,14),
+}
+},
+Icons={
+Error="rbxassetid://10709752996",
+Button="rbxassetid://10709791437",
+Close="rbxassetid://10747384394",
+TextBox="rbxassetid://15637081879",
+Search="rbxassetid://10734943674",
+Keybind="rbxassetid://10734982144",
+Dropdown={
+Open="rbxassetid://10709791523",
+Close="rbxassetid://10709790948"
+}
+},
+Font={
+Normal=Enum.Font.BuilderSans,
+Medium=Enum.Font.BuilderSansMedium,
+Bold=Enum.Font.BuilderSansBold,
+ExtraBold=Enum.Font.BuilderSansExtraBold,
+SliderValue=Enum.Font.FredokaOne
+},
+BackgroundTransparency=0.03
+},
+RoseGold={
+Colors={
+Background=ColorSequence.new{
+ColorSequenceKeypoint.new(0.00,Color3.fromRGB(28,18,18)),
+ColorSequenceKeypoint.new(0.50,Color3.fromRGB(40,26,26)),
+ColorSequenceKeypoint.new(1.00,Color3.fromRGB(28,18,18))
+},
+Primary=Color3.fromRGB(230,140,120),
+OnPrimary=Color3.fromRGB(200,170,165),
+ScrollBar=Color3.fromRGB(230,140,120),
+Stroke=Color3.fromRGB(55,35,35),
+Error=Color3.fromRGB(255,100,100),
+Icons=Color3.fromRGB(240,200,195),
+JoinButton=Color3.fromRGB(180,90,75),
+Link=Color3.fromRGB(240,150,130),
+Dialog={
+Background=Color3.fromRGB(24,15,15)
+},
+Buttons={
+Holding=Color3.fromRGB(42,28,28),
+Default=Color3.fromRGB(34,22,22)
+},
+Border={
+Holding=Color3.fromRGB(72,48,48),
+Default=Color3.fromRGB(55,38,38),
+},
+Text={
+Default=Color3.fromRGB(255,230,225),
+Dark=Color3.fromRGB(215,185,180),
+Darker=Color3.fromRGB(185,158,155),
+},
+Slider={
+SliderBar=Color3.fromRGB(230,140,120),
+SliderNumber=Color3.fromRGB(240,200,195),
+},
+Dropdown={
+Holder=Color3.fromRGB(26,16,16),
+}
+},
+Icons={
+Error="rbxassetid://10709752996",
+Button="rbxassetid://10709791437",
+Close="rbxassetid://10747384394",
+TextBox="rbxassetid://15637081879",
+Search="rbxassetid://10734943674",
+Keybind="rbxassetid://10734982144",
+Dropdown={
+Open="rbxassetid://10709791523",
+Close="rbxassetid://10709790948"
+}
+},
+Font={
+Normal=Enum.Font.BuilderSans,
+Medium=Enum.Font.BuilderSansMedium,
+Bold=Enum.Font.BuilderSansBold,
+ExtraBold=Enum.Font.BuilderSansExtraBold,
+SliderValue=Enum.Font.FredokaOne
+},
+BackgroundTransparency=0.03
+},
+Arctic={
+Colors={
+Background=ColorSequence.new{
+ColorSequenceKeypoint.new(0.00,Color3.fromRGB(18,22,28)),
+ColorSequenceKeypoint.new(0.50,Color3.fromRGB(26,32,42)),
+ColorSequenceKeypoint.new(1.00,Color3.fromRGB(18,22,28))
+},
+Primary=Color3.fromRGB(100,200,255),
+OnPrimary=Color3.fromRGB(160,200,220),
+ScrollBar=Color3.fromRGB(100,200,255),
+Stroke=Color3.fromRGB(35,45,60),
+Error=Color3.fromRGB(255,100,80),
+Icons=Color3.fromRGB(195,225,245),
+JoinButton=Color3.fromRGB(60,150,200),
+Link=Color3.fromRGB(120,210,255),
+Dialog={
+Background=Color3.fromRGB(14,18,24)
+},
+Buttons={
+Holding=Color3.fromRGB(28,36,48),
+Default=Color3.fromRGB(22,28,38)
+},
+Border={
+Holding=Color3.fromRGB(50,62,80),
+Default=Color3.fromRGB(40,50,65),
+},
+Text={
+Default=Color3.fromRGB(225,240,255),
+Dark=Color3.fromRGB(175,200,225),
+Darker=Color3.fromRGB(150,175,200),
+},
+Slider={
+SliderBar=Color3.fromRGB(100,200,255),
+SliderNumber=Color3.fromRGB(195,225,245),
+},
+Dropdown={
+Holder=Color3.fromRGB(20,24,32),
+}
+},
+Icons={
+Error="rbxassetid://10709752996",
+Button="rbxassetid://10709791437",
+Close="rbxassetid://10747384394",
+TextBox="rbxassetid://15637081879",
+Search="rbxassetid://10734943674",
+Keybind="rbxassetid://10734982144",
+Dropdown={
+Open="rbxassetid://10709791523",
+Close="rbxassetid://10709790948"
+}
+},
+Font={
+Normal=Enum.Font.BuilderSans,
+Medium=Enum.Font.BuilderSansMedium,
+Bold=Enum.Font.BuilderSansBold,
+ExtraBold=Enum.Font.BuilderSansExtraBold,
+SliderValue=Enum.Font.FredokaOne
+},
+BackgroundTransparency=0.03
+},
+Amber={
+Colors={
+Background=ColorSequence.new{
+ColorSequenceKeypoint.new(0.00,Color3.fromRGB(28,20,8)),
+ColorSequenceKeypoint.new(0.50,Color3.fromRGB(40,28,12)),
+ColorSequenceKeypoint.new(1.00,Color3.fromRGB(28,20,8))
+},
+Primary=Color3.fromRGB(255,180,0),
+OnPrimary=Color3.fromRGB(200,180,140),
+ScrollBar=Color3.fromRGB(255,180,0),
+Stroke=Color3.fromRGB(60,45,18),
+Error=Color3.fromRGB(255,80,60),
+Icons=Color3.fromRGB(240,210,170),
+JoinButton=Color3.fromRGB(200,130,0),
+Link=Color3.fromRGB(255,200,50),
+Dialog={
+Background=Color3.fromRGB(24,17,6)
+},
+Buttons={
+Holding=Color3.fromRGB(42,30,14),
+Default=Color3.fromRGB(34,24,10)
+},
+Border={
+Holding=Color3.fromRGB(78,58,28),
+Default=Color3.fromRGB(58,42,20),
+},
+Text={
+Default=Color3.fromRGB(255,240,210),
+Dark=Color3.fromRGB(215,190,155),
+Darker=Color3.fromRGB(185,162,130),
+},
+Slider={
+SliderBar=Color3.fromRGB(255,180,0),
+SliderNumber=Color3.fromRGB(240,210,170),
+},
+Dropdown={
+Holder=Color3.fromRGB(26,18,8),
+}
+},
+Icons={
+Error="rbxassetid://10709752996",
+Button="rbxassetid://10709791437",
+Close="rbxassetid://10747384394",
+TextBox="rbxassetid://15637081879",
+Search="rbxassetid://10734943674",
+Keybind="rbxassetid://10734982144",
+Dropdown={
+Open="rbxassetid://10709791523",
+Close="rbxassetid://10709790948"
+}
+},
+Font={
+Normal=Enum.Font.BuilderSans,
+Medium=Enum.Font.BuilderSansMedium,
+Bold=Enum.Font.BuilderSansBold,
+ExtraBold=Enum.Font.BuilderSansExtraBold,
+SliderValue=Enum.Font.FredokaOne
+},
+BackgroundTransparency=0.03
 }
 }
 
@@ -578,9 +913,7 @@ Themes=r,
 
 Connections={},
 Options={},
-Tabs={},
-FontObjects={},
-FontPath="rbxasset://fonts/families/BuilderSans.json"
+Tabs={}
 }
 
 s.Info=s.Information
@@ -1450,7 +1783,10 @@ if not A then
 A=s.CurrentTheme
 end
 
-x[y]=w(A,if type(z)=="function"then z()else z)end local y=function(
+local _=w(A,if type(z)=="function"then z()else z)
+if _~=nil then
+pcall(function()x[y]=_ end)
+end end local y=function(
 
 
 y, z, A)
@@ -1507,7 +1843,7 @@ end
 end
 
 function v:destroy()
-local C=self.Parent and table.find(self.Parent.Descendants)
+local C=self.Parent and table.find(self.Parent.Descendants,self)
 
 if C then
 table.remove(self.Parent.Descendants,C)
@@ -1629,7 +1965,11 @@ end
 function H:ThemeTag(I)
 local J=I.OBJECTS
 I.OBJECTS=nil
-return(J or C):add(self,I)
+local K={}
+for L,M in I do
+K[L]=M
+end
+return(J or C):add(self,K)
 end
 
 function D:SetProperties(I)
@@ -1639,13 +1979,6 @@ H[J](self,K)
 else
 self[J]=K
 end
-end
-
--- Auto-track font objects for FontFace system (like WindUI)
-if(self:IsA("TextLabel")or self:IsA("TextButton")or self:IsA("TextBox"))and I.Font then
-pcall(function()
-s.AddFontObject(self)
-end)
 end
 end
 
@@ -2954,6 +3287,11 @@ end
 local aB=V[self]
 local aC,aD,aE=am(self,aw,ax,UDim2.new(1,-38,0,0))
 
+local aFHolderTag={
+OBJECTS=aB,
+BackgroundColor3="Colors.Stroke"
+}
+
 local aF=E("Frame",aC,{
 Size=UDim2.new(0,35,0,18),
 Position=UDim2.new(1,-10,0.5),
@@ -2961,10 +3299,7 @@ AnchorPoint=Vector2.new(1,0.5),
 Elements={
 Corner=UDim.new(0.5,0)
 },
-ThemeTag={
-OBJECTS=aB,
-BackgroundColor3="Colors.Stroke"
-}
+ThemeTag=aFHolderTag
 })
 
 local aG=E("Frame",aF,{
@@ -3020,9 +3355,11 @@ local aQ=Vector2.new(aO and 1 or 0,0.5)
 local aR=aO and"Colors.Primary"or"Colors.OnPrimary"
 local aS=w(s.CurrentTheme,aR)
 
-local aHolderColor=aO and Color3.fromRGB(70,70,70)or w(s.CurrentTheme,"Colors.Stroke")
+local aHolderPath=aO and"Colors.Buttons.Holding"or"Colors.Stroke"
+local aHolderColor=w(s.CurrentTheme,aHolderPath)
 
 aH.BackgroundColor3=aR
+aFHolderTag.BackgroundColor3=aHolderPath
 
 if self.Selected and(tick()-aJ)>=aK then
 aM{
@@ -4265,20 +4602,7 @@ Color="Colors.Background"
 }
 },
 Childs={
-E("ImageLabel","StripePattern",{
-Size=UDim2.fromScale(1,1),
-BackgroundTransparency=1,
-Image="rbxassetid://2159415882",
-ImageTransparency=0.92,
-ImageColor3=Color3.fromRGB(255,255,255),
-ScaleType=Enum.ScaleType.Tile,
-SliceCenter=Rect.new(0,0,64,64),
-TileSize=UDim2.fromOffset(28,28),
-ZIndex=0,
-Elements={
-Corner=UDim.new(0,6)
-}
-}),
+
 E("TextLabel","Title",{
 Size=UDim2.new(1,-20,0,20),
 TextTruncate=Enum.TextTruncate.AtEnd,
@@ -4586,6 +4910,7 @@ aCloseScreen:Play()
 local aCloseFade=J(aE,"BackgroundTransparency",1,aCloseDur)
 aCloseFade:Play()
 aCloseFade.Completed:Connect(function()
+aD:destroy()
 aG:Destroy()
 end)
 end
@@ -4939,32 +5264,10 @@ self.WindowSettings.SelectedTheme=ac.Name
 C:update()
 end
 
-function s.AddFontObject(ab)
-table.insert(s.FontObjects,ab)
--- Don't call UpdateFont immediately, just track the object
--- UpdateFont will be called when user changes font via SetFont
-end
-
-function s.UpdateFont(ab)
-s.FontPath=ab
-for ac,ad in s.FontObjects do
-pcall(function()
-if ad.FontFace then
-ad.FontFace=Font.new(ab,ad.FontFace.Weight,ad.FontFace.Style)
-else
-ad.FontFace=Font.new(ab,Enum.FontWeight.Regular)
-end
-end)
-end
-end
-
 function s:SetFont(ab)
-if type(ab)=="string"then
-s.UpdateFont(ab)
-elseif type(ab)=="table"then
+assert(type(ab)=="table",`"Library.SetFont". 'table' expected, got {typeof(ab)}`)
 self.CurrentTheme.Font=ab
 C:update()
-end
 end
 
 function s:SetBackgroundTransparency(ab)
@@ -5196,21 +5499,7 @@ Color="Colors.Background"
 }
 })
 
--- Diagonal stripe pattern overlay
-local aStripe=E("ImageLabel","StripePattern",ak,{
-Size=UDim2.fromScale(1,1),
-BackgroundTransparency=1,
-Image="rbxassetid://2159415882",
-ImageTransparency=0.92,
-ImageColor3=Color3.fromRGB(255,255,255),
-ScaleType=Enum.ScaleType.Tile,
-SliceCenter=Rect.new(0,0,64,64),
-TileSize=UDim2.fromOffset(28,28),
-ZIndex=0,
-Elements={
-Corner=UDim.new(0,8)
-}
-})
+
 
 u(ak.Destroying,function()
 self:Destroy()
@@ -5381,8 +5670,8 @@ return UDim2.new(0,math.clamp(aB,135,210),0.5,15)
 end)
 
 local aA={
-Title="Close Window?",
-Content="You Want Close UI?",
+Title="Hacker Hub",
+Content="Do You Want Close This UI?",
 Options={
 {
 Title="Yes",
